@@ -4,10 +4,7 @@ import Logo from "./Logo";
 
 const Navbar = () => {
   return (
-    <nav
-      className="navbar fixed-top navbar-expand-md"
-      style={{ background: "#a1a1aa" }}
-    >
+    <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark shadow">
       <div className="container">
         <Logo />
         <button

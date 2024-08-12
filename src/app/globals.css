@@ -10,10 +10,8 @@
   border-bottom: 3px solid transparent;
 }
 
-@media (min-width: 767px) {
-  .nav-item-custom {
-    border-bottom: 3px solid #ffc600;
-  }
+.nav-item-custom:hover {
+  border-bottom: 3px solid #ffc600;
 }
 
 .loading-container {
