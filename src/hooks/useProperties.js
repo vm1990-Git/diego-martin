@@ -8,9 +8,10 @@ const useProperties = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    const controller = new AbortController();
+    const { signal } = controller;
+
     const loadProperties = async () => {
-      const controller = new AbortController();
-      const { signal } = controller;
       try {
         setLoading(true);
         const fetchedProperties = await fetchProperties({ signal });
@@ -24,13 +25,13 @@ const useProperties = () => {
       } finally {
         setLoading(false);
       }
-
-      return () => {
-        controller.abort();
-      };
     };
 
     loadProperties();
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return {

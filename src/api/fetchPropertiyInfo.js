@@ -2,7 +2,7 @@ export const fetchPropertiyInfo = async (id) => {
   console.log(id);
   try {
     const response = await fetch(
-      `https://diegogmartin.onrender.com/api/propiedades/${id}`
+      `https://diegogmartin.onrender.com/api/propiedades/${id}?populate=*`
     );
 
     if (!response.ok) {

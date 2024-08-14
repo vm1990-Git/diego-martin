@@ -4,10 +4,6 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-const formatNumber = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-};
-
 const Card = ({
   id,
   image,
@@ -17,6 +13,10 @@ const Card = ({
   pricePesos = "Consultar",
 }) => {
   const router = useRouter();
+
+  const formatNumber = (number) => {
+    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  };
 
   const formatPrice = (price, symbol) => {
     if (price === "Consultar") return "Consultar";
@@ -63,8 +63,8 @@ const Card = ({
       >
         <div className="container">
           <div className="row">
-            <div className="col text-center">Precio</div>
-            <div className="col">{displayPrice}</div>
+            <div className="col-4 text-center">Precio</div>
+            <div className="col-8 text-center">{displayPrice}</div>
           </div>
         </div>
       </div>

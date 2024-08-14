@@ -35,43 +35,31 @@ const Header = () => {
           <Image
             src="/assets/header1.jpg"
             alt="Imagen de encabezado"
-            width={500}
+            width={1000}
             height={500}
             className="d-block w-100"
             style={{ objectFit: "cover" }}
           />
-          <div className="carousel-caption d-block">
-            <h4>DGM</h4>
-            <p>Diego Martin Propiedades</p>
-          </div>
         </div>
         <div className="carousel-item">
           <Image
-            src="/assets/header2.jpg"
+            src="/assets/header2.png"
             alt="Imagen de encabezado"
-            width={500}
+            width={1000}
             height={500}
             className="d-block w-100"
             style={{ objectFit: "cover" }}
           />
-          <div className="carousel-caption d-block">
-            <h4>DGM</h4>
-            <p>Diego Martin Propiedades</p>
-          </div>
         </div>
         <div className="carousel-item">
           <Image
-            src="/assets/header3.jpg"
+            src="/assets/header3.png"
             alt="Imagen de encabezado"
-            width={500}
+            width={1000}
             height={500}
             className="d-block w-100"
             style={{ objectFit: "cover" }}
           />
-          <div className="carousel-caption d-block">
-            <h4>DGM</h4>
-            <p>Diego Martin Propiedades</p>
-          </div>
         </div>
       </div>
       <button

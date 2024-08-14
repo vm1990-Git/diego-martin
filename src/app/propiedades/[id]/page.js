@@ -1,9 +1,14 @@
-import PropertyInfo from "@/app/components/PropertyInfo";
-import Image from "next/image";
-import React from "react";
+import PropertyDetails from "@/app/components/PropertyDetails/PropertyDetails";
 
-const page = () => {
-  return <PropertyInfo />;
+const Page = () => {
+  return (
+    <div>
+      <PropertyDetails />
+    </div>
+  );
 };
 
-export default page;
+export default Page;
+
+{
+}

@@ -1,7 +1,7 @@
 export const fetchProperties = async () => {
   try {
     const response = await fetch(
-      "https://diegogmartin.onrender.com/api/propiedades"
+      "https://diegogmartin.onrender.com/api/propiedades?populate=*"
     );
 
     if (!response.ok) {
@@ -9,7 +9,6 @@ export const fetchProperties = async () => {
     }
 
     const { data } = await response.json();
-    console.log(data);
     return data;
   } catch (error) {
     console.error("Failed to fetch properties:", error);

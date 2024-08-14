@@ -42,6 +42,7 @@ const FilterSection = ({ filters, setFilters }) => {
       rooms: "",
       bedrooms: "",
       bathrooms: "",
+      amenities,
       additionalOptions: {
         credit: false,
         parking: false,
@@ -239,6 +240,30 @@ const FilterSection = ({ filters, setFilters }) => {
                 <option value="3">3 baños</option>
                 <option value="4">4 baños</option>
                 <option value="5">5 o más baños</option>
+              </select>
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Comodidades</label>
+              <select
+                className="form-select"
+                name="amenities"
+                value={filters.amenities}
+                onChange={handleChange}
+              >
+                <option value="">Seleccione</option>
+                <option value="Balcón">Balcón</option>
+                <option value="Lavadero">Lavadero</option>
+                <option value="Dep. Servicio">Dep. Servicio</option>
+                <option value="Espacio al Frente">Espacio al Frente</option>
+                <option value="Acensor">Acensor</option>
+                <option value="Quincho">Quincho</option>
+                <option value="Sum">Sum</option>
+                <option value="Parrilla">Parrilla</option>
+                <option value="Pscina">Pscina</option>
+                <option value="Vigilancia">Vigilancia</option>
+                <option value="Terraza">Terraza</option>
+                <option value="Apto Emprendimiento">Apto Emprendimiento</option>
               </select>
             </div>
 

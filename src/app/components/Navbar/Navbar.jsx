@@ -1,8 +1,12 @@
+"use client";
+
 import React from "react";
 import NavbarItem from "./NavbarItem";
 import Logo from "./Logo";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+  const router = useRouter();
   return (
     <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark shadow">
       <div className="container">
@@ -20,11 +24,23 @@ const Navbar = () => {
         </button>
         <div className="collapse navbar-collapse" id="nav">
           <ul className="navbar-nav ms-auto">
-            <NavbarItem title={"Home"} href={"/"} />
-            <NavbarItem title={"Quienes Somos"} href={"/"} />
-            <NavbarItem title={"Servicios"} href={"/"} />
-            <NavbarItem title={"Búsqueda"} href={"/propiedades"} />
-            <NavbarItem title={"Contacto"} href={"/"} />
+            <NavbarItem label={"Home"} onClick={() => router.push("/")} />
+            <NavbarItem
+              label={"Quienes Somos"}
+              onClick={() => router.push("/#about-us")}
+            />
+            <NavbarItem
+              label={"Servicios"}
+              onClick={() => router.push("/#services")}
+            />
+            <NavbarItem
+              label={"Búsqueda"}
+              onClick={() => router.push("/propiedades")}
+            />
+            <NavbarItem
+              label={"Contacto"}
+              onClick={() => router.push("#contact")}
+            />
           </ul>
         </div>
       </div>

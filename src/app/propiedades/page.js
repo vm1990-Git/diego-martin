@@ -1,10 +1,10 @@
 "use client";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "../components/Card";
 import FilterSection from "../components/FilterSection";
 import useProperties from "../../hooks/useProperties";
 
-// Función para aplicar filtros
+// Function to apply filters
 const applyFilters = (properties, filters) => {
   let filtered = properties;
 
@@ -62,11 +62,11 @@ const applyFilters = (properties, filters) => {
     );
   }
 
-  if (filters.bathrooms) {
+  if (filters.amenities) {
     filtered = filtered.filter(
       (property) =>
-        property.attributes.Banos &&
-        property.attributes.Banos.includes(filters.bathrooms)
+        property.attributes.Comodidades &&
+        property.attributes.Comodidades.includes(filters.amenities)
     );
   }
 
@@ -106,6 +106,7 @@ const Index = () => {
     rooms: "",
     bedrooms: "",
     bathrooms: "",
+    amenities: "",
     additionalOptions: {
       credit: false,
       parking: false,
@@ -140,20 +141,26 @@ const Index = () => {
     <div className="d-flex flex-column my-5 py-5">
       <h2 className="text-center h2 fw-semibold pb-3">Propiedades</h2>
       <FilterSection filters={filters} setFilters={setFilters} />
-      <div className="container-fluid card-container">
+      <div className="container card-container">
         {filteredProperties.length > 0 ? (
-          filteredProperties.map((property) => (
-            <Card
-              key={property.id}
-              id={property.id}
-              image={property.image || "/assets/property1.jpg"}
-              title={property.attributes.Direccion || "Dirección"}
-              subtitle={property.attributes.descripcion || "Localidad"}
-              text={property.attributes.sub_descripcion || "Descripción"}
-              priceUsd={property.attributes.valor_dolares || "Consultar"}
-              pricePesos={property.attributes.valor_pesos || "Consultar"}
-            />
-          ))
+          filteredProperties.map((property) => {
+            const imageUrl =
+              property.attributes.Imagen?.data?.[0]?.attributes?.url ||
+              "/assets/NoImage.png";
+
+            return (
+              <Card
+                key={property.id}
+                id={property.id}
+                image={imageUrl}
+                title={property.attributes.Direccion || "Dirección"}
+                subtitle={property.attributes.descripcion || "Localidad"}
+                text={property.attributes.sub_descripcion || "Descripción"}
+                priceUsd={property.attributes.valor_dolares || "Consultar"}
+                pricePesos={property.attributes.valor_pesos || "Consultar"}
+              />
+            );
+          })
         ) : (
           <p>No properties available.</p>
         )}
