@@ -1,6 +1,12 @@
 import Carousel from "react-bootstrap/Carousel";
 import "./PropetyDetails.css";
 import { IoIosResize } from "react-icons/io";
+import { BsArrowsAngleExpand } from "react-icons/bs";
+import { FaExpandArrowsAlt } from "react-icons/fa";
+import { HiMiniArrowsPointingOut } from "react-icons/hi2";
+import { MdOutlineZoomOutMap } from "react-icons/md";
+import { HiArrowsPointingOut } from "react-icons/hi2";
+
 import Image from "next/image";
 
 const ControlledCarousel = ({ index, setIndex, images }) => {
@@ -9,7 +15,7 @@ const ControlledCarousel = ({ index, setIndex, images }) => {
   };
 
   return (
-    <div className="container rounded-4 position-relative">
+    <div style={{ background: "#f1f5f9", position: "relative" }}>
       <Carousel activeIndex={index} onSelect={handleSelect}>
         {images.map((image, i) => (
           <Carousel.Item key={i}>
@@ -21,18 +27,18 @@ const ControlledCarousel = ({ index, setIndex, images }) => {
                 width={1000}
                 height={1000}
               />
+              <button
+                type="button"
+                className="d-flex icon-button position-absolute top-0 end-0 m-2 text-light rounded-3"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                <HiArrowsPointingOut size={30} />
+              </button>
             </div>
           </Carousel.Item>
         ))}
       </Carousel>
-      <button
-        type="button"
-        className="d-flex icon-button position-absolute top-0 end-0 m-2"
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        <IoIosResize />
-      </button>
     </div>
   );
 };

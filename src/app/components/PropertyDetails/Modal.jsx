@@ -6,7 +6,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./PropetyDetails.css";
 import Image from "next/image";
 
-const Modal = ({ images, imageIndex, setImageIndex, prevImage, nextImage }) => {
+const Modal = ({ images, imageIndex, prevImage, nextImage }) => {
   return (
     <>
       <div
@@ -41,7 +41,7 @@ const Modal = ({ images, imageIndex, setImageIndex, prevImage, nextImage }) => {
                 height={1000}
               />
               <button
-                className="btn btn-custom-arrow position-absolute top-50 end-0 translate-middle-y border"
+                className="btn btn-custom-arrow position-absolute top-50 end-0 translate-middle-y"
                 onClick={nextImage}
                 style={{ zIndex: 1, fontSize: "50px", fontWeight: "100" }}
               >

@@ -96,14 +96,14 @@
 .custom-line {
   border: none;
   height: 2px;
-  background-color: rgb(137, 136, 136);
+  background-color: rgb(209, 206, 206);
   margin: 10px 0;
 }
 
 .section-offset {
   position: relative;
-  padding-top: 60px; /* Ajusta este valor según la altura de tu navbar */
-  margin-top: -60px; /* Ajusta este valor según la altura de tu navbar */
+  padding-top: 60px;
+  margin-top: -60px;
 }
 
 .section-offset::before {

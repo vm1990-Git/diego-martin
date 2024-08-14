@@ -8,6 +8,9 @@ import Modal from "./Modal";
 import ControlledCarousel from "./Carousel";
 import { usePathname } from "next/navigation";
 import { fetchPropertiyInfo } from "@/api/fetchPropertiyInfo";
+import Map from "./Map";
+import Details from "./Details";
+import Icon from "./Icon";
 
 function PropertyDetails() {
   const [imageIndex, setImageIndex] = useState(0);
@@ -16,11 +19,6 @@ function PropertyDetails() {
   const [error, setError] = useState(null);
   const pathname = usePathname();
   const id = pathname.split("/")[2];
-
-  const IconClass =
-    "d-flex flex-column align-items-center justify-content-center text-center";
-
-  const IconStyle = { width: "100px" };
 
   const images = propertyInfo?.Imagen?.data?.map(
     (img) => img.attributes.url
@@ -40,38 +38,15 @@ function PropertyDetails() {
     Dormitorios = 0,
     Banos = 0,
     espacio_para_autos = false,
-    Comodidades = "No disponible",
-    Varios = "No disponible",
-    Servicios = "No disponible",
-    coordenadas = { lat: 0, lon: 0 },
+    coordenadas = null,
     Localidades = "No disponible",
     m2_cubiertos = 0,
     m2_descubiertos = 0,
     Lote = null,
-    Comodidades_Balcon = null,
-    Comodidades_Lavadero = null,
-    Comodidades_Dep_Servicio = null,
-    Comodidades_Espacio_al_frente = null,
-    Comodidades_Fondo_libre = null,
-    Comodidades_Ascensor = null,
-    Comodidades_Quincho = null,
-    Comodidades_SUM = null,
-    Comodidades_Parrilla = null,
-    Comodidades_Piscina = null,
-    Comodidades_Vigilancia = null,
-    Comodidades_Terraza = null,
-    Comodidades_Apto_Emprendimiento = null,
-    Varios_Apto_Profesional = null,
-    Varios_Apto_Credito = null,
-    Varios_Destacado = null,
-    Varios_Garantia_Propietaria = null,
-    Varios_Seguro_de_caucion = null,
-    Servicios_Gas_Natural = null,
-    Servicios_Agua_Corriente = null,
-    Servicios_Luz = null,
-    Servicios_Red_Cloacal = null,
-    Servicios_Pavimento = null,
   } = propertyInfo || {};
+
+  const srcMatch = coordenadas?.match(/src="([^"]*)"/);
+  const src = srcMatch ? srcMatch[1] : null;
 
   const validDolares = valor_dolares != null && valor_dolares > 0;
   const validPesos = valor_pesos != null && valor_pesos > 0;
@@ -140,7 +115,6 @@ function PropertyDetails() {
     );
   };
 
-  // Define arrays for comodidades, varios, and servicios
   const comodidadesList = [
     { key: "Comodidades_Balcon", label: "Balcon" },
     { key: "Comodidades_Lavadero", label: "Lavadero" },
@@ -174,121 +148,96 @@ function PropertyDetails() {
   ].filter((item) => propertyInfo[item.key]);
 
   return (
-    <>
-      <div className="container py-4 my-5">
-        <div className="row">
-          <div className="col-12 col-lg-8 shadow rounded-3 p-2">
-            <ControlledCarousel
-              images={images}
-              index={imageIndex}
-              setIndex={setImageIndex}
-            />
-            <Modal
-              images={images}
-              imageIndex={imageIndex}
-              setImageIndex={setImageIndex}
-              prevImage={prevImage}
-              nextImage={nextImage}
-            />
-            <div className="container p-4">
-              <div className="row">
-                <div className="col">
-                  <h3 className="">{Direccion}</h3>
-                </div>
-                <div className="col text-end">
-                  <h3>{formatNumber(displayPrice)}</h3>
-                </div>
+    <div className="container-md mt-5 pt-3 g-0">
+      <div className="row">
+        <div className="col-12 col-lg-8 rounded-3 shadow-sm ">
+          <ControlledCarousel
+            images={images}
+            index={imageIndex}
+            setIndex={setImageIndex}
+          />
+          <Modal
+            images={images}
+            imageIndex={imageIndex}
+            setImageIndex={setImageIndex}
+            prevImage={prevImage}
+            nextImage={nextImage}
+          />
+          <div className="container-fluid py-2">
+            <div className="row ">
+              <div className="col-12 col-md-6">
+                <h3 className="">{Direccion}</h3>
               </div>
-            </div>
-            <div className="container p-4">
-              <p>{descripcion}</p>
-              <hr className="custom-line" />
-              <p>{sub_descripcion}</p>
+              <div className="col-12 col-md-6 text-md-end">
+                <h3>{formatNumber(displayPrice)}</h3>
+              </div>
             </div>
           </div>
-          <div className="col-12 col-lg-4">
-            <div className="container shadow rounded-3 p-4">
-              <h3 className="text-center">{Titulo}</h3>
-
-              <hr className="custom-line" />
-              <div className="row">
-                <div
-                  className="d-flex flex-wrap justify-content-center py-2 gap-2"
-                  style={{ fontSize: ".9rem" }}
-                >
-                  <div className={IconClass}>
-                    <IoCubeSharp size={25} />
-                    <span style={IconStyle}>{extractNumber(Ambientes)}</span>
-                    <span>Ambientes</span>
-                  </div>
-                  <div className={IconClass}>
-                    <IoBed size={25} />
-                    <span style={IconStyle}>{extractNumber(Dormitorios)}</span>
-                    <span>Dormitorios</span>
-                  </div>
-                  <div className={IconClass}>
-                    <FaBath size={25} />
-                    <span style={IconStyle}>{extractNumber(Banos)}</span>
-                    <span>Baños</span>
-                  </div>
-                  <div className={IconClass}>
-                    <FaObjectGroup size={25} />
-                    <span style={IconStyle}>
-                      {m2_descubiertos ? m2_descubiertos : 0}
-                    </span>
-                    <span>M2 Libres</span>
-                  </div>
-                  <div className={IconClass}>
-                    <FaHome size={25} />
-                    <span style={IconStyle}>
-                      {m2_cubiertos ? m2_cubiertos : 0}
-                    </span>
-                    <span>M2 Cubiertos</span>
-                  </div>
-                  <div className={IconClass}>
-                    <FaThLarge size={25} />
-                    <span style={IconStyle}>
-                      {parseInt(m2_cubiertos + m2_descubiertos)}
-                    </span>
-                    <span>M2 Totales</span>
-                  </div>
-                </div>
-              </div>
-              <hr className="custom-line" />
-              {Apto_credito && <div>Apto Credito</div>}
-              {espacio_para_autos && <div>Cochera</div>}
-
-              <div className="mt-4">
-                <h4>Comodidades</h4>
-                <ul>
-                  {comodidadesList.map((item) => (
-                    <li key={item.key}>{item.label}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-4">
-                <h4>Varios</h4>
-                <ul>
-                  {variosList.map((item) => (
-                    <li key={item.key}>{item.label}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mt-4">
-                <h4>Servicios</h4>
-                <ul>
-                  {serviciosList.map((item) => (
-                    <li key={item.key}>{item.label}</li>
-                  ))}
-                </ul>
-              </div>
+          <div className="px-4">
+            <p
+              className="text-start fw-semibold"
+              style={{ fontSize: "1.2rem" }}
+            >
+              {Titulo}
+            </p>
+            <p>{descripcion}</p>
+            <hr className="custom-line" />
+            <p>{sub_descripcion}</p>
+            <div className="d-none d-lg-block">
+              <Map src={src} />
             </div>
           </div>
         </div>
+        <div className="col-12 col-lg-4 rounded-3 shadow-sm p-4">
+          <div className="row">
+            <div
+              className="d-flex flex-wrap justify-content-center py-2 gap-2"
+              style={{ fontSize: ".9rem" }}
+            >
+              <Icon
+                label={"Ambientes"}
+                value={extractNumber(Ambientes)}
+                IconComponent={IoCubeSharp}
+              />
+
+              <Icon
+                label={"Dormitorios"}
+                value={extractNumber(Dormitorios)}
+                IconComponent={IoBed}
+              />
+              <Icon
+                label={"Baños"}
+                value={extractNumber(Banos)}
+                IconComponent={FaBath}
+              />
+              <Icon
+                label={"M2 Libres"}
+                value={m2_descubiertos ? m2_descubiertos : 0}
+                IconComponent={FaObjectGroup}
+              />
+
+              <Icon
+                label={"M2 Cubiertos"}
+                value={m2_cubiertos ? m2_cubiertos : 0}
+                IconComponent={FaHome}
+              />
+
+              <Icon
+                label={"M2 Totales"}
+                value={parseInt(m2_cubiertos + m2_descubiertos)}
+                IconComponent={FaThLarge}
+              />
+            </div>
+          </div>
+          <Details title={"Comodidades"} list={comodidadesList} />
+          <Details title={"Varios"} list={variosList} />
+          <Details title={"Servicios"} list={serviciosList} />
+        </div>
+        <div className="d-lg-none d-block g-0">
+          <Map src={src} />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
 
