@@ -148,7 +148,7 @@ function PropertyDetails() {
   ].filter((item) => propertyInfo[item.key]);
 
   return (
-    <div className="container-fluid g-0" style={{ marginTop: "45px" }}>
+    <div className="container-md g-0" style={{ marginTop: "45px" }}>
       <div className="row g-0">
         <div className="col-12 col-lg-8 rounded-3 shadow-sm pt-3">
           <ControlledCarousel

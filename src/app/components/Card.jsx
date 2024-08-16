@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 const Card = ({
@@ -12,8 +11,6 @@ const Card = ({
   priceUsd = "Consultar",
   pricePesos = "Consultar",
 }) => {
-  const router = useRouter();
-
   const formatNumber = (number) => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
@@ -33,7 +30,8 @@ const Card = ({
   const imageAlt = title || "Card image";
 
   const handleClick = () => {
-    router.push(`/propiedades/${id}`);
+    const url = `/propiedades/${id}`;
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (

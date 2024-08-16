@@ -2,9 +2,9 @@ import React from "react";
 
 const Map = ({ src }) => {
   return (
-    <div className="container">
+    <div>
       <iframe
-        className="rounded-3"
+        style={{ width: "100%" }}
         width="100%"
         height="400"
         src={src}
