@@ -148,9 +148,9 @@ function PropertyDetails() {
   ].filter((item) => propertyInfo[item.key]);
 
   return (
-    <div className="container-md mt-5 pt-3 g-0">
-      <div className="row">
-        <div className="col-12 col-lg-8 rounded-3 shadow-sm ">
+    <div className="container-fluid g-0" style={{ marginTop: "45px" }}>
+      <div className="row g-0">
+        <div className="col-12 col-lg-8 rounded-3 shadow-sm pt-3">
           <ControlledCarousel
             images={images}
             index={imageIndex}
@@ -211,20 +211,20 @@ function PropertyDetails() {
                 IconComponent={FaBath}
               />
               <Icon
-                label={"M2 Libres"}
-                value={m2_descubiertos ? m2_descubiertos : 0}
+                label={"Libres"}
+                value={`${m2_descubiertos ? m2_descubiertos : 0}m² `}
                 IconComponent={FaObjectGroup}
               />
 
               <Icon
-                label={"M2 Cubiertos"}
-                value={m2_cubiertos ? m2_cubiertos : 0}
+                label={"Cubiertos"}
+                value={`${m2_cubiertos ? m2_cubiertos : 0}m² `}
                 IconComponent={FaHome}
               />
 
               <Icon
-                label={"M2 Totales"}
-                value={parseInt(m2_cubiertos + m2_descubiertos)}
+                label={"Totales"}
+                value={`${m2_cubiertos ? m2_descubiertos : 0}m² `}
                 IconComponent={FaThLarge}
               />
             </div>

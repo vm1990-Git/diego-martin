@@ -1,11 +1,7 @@
 import PropertyDetails from "@/app/components/PropertyDetails/PropertyDetails";
 
 const Page = () => {
-  return (
-    <>
-      <PropertyDetails />
-    </>
-  );
+  return <PropertyDetails />;
 };
 
 export default Page;

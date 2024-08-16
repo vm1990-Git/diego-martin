@@ -109,7 +109,7 @@
 .section-offset::before {
   content: "";
   display: block;
-  height: 70px; /* Ajusta este valor según la altura de tu navbar */
-  margin-top: -70px; /* Ajusta este valor según la altura de tu navbar */
+  height: 70px;
+  margin-top: -70px;
   visibility: hidden;
 }

@@ -24,7 +24,7 @@
   color: black; /* Cambia el color del ícono al pasar el mouse sobre él */
 }
 
-.carousel-item-container {
+/* .carousel-item-container {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -36,7 +36,7 @@
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
-}
+} */
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -57,7 +57,7 @@
 .carousel-control-next:hover {
   filter: brightness(0);
 }
-
+/* 
 .modal-dialog {
   max-width: 75%;
   width: 75%;
@@ -65,9 +65,15 @@
 
 .modal-content {
   padding: 0;
-}
+} */
 
 .img-fluid {
   width: 100% !important;
   height: auto;
+}
+
+.btn-carousel-zoom {
+  :hover {
+    color: rgb(36, 36, 36);
+  }
 }
