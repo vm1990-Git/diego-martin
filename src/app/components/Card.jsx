@@ -45,7 +45,7 @@ const Card = ({
         alt={imageAlt}
         width={200}
         height={200}
-        className="card-img-top"
+        className="card-img-top object-fit-cover"
       />
 
       <div className="card-body">

@@ -160,8 +160,6 @@ function PropertyDetails() {
             images={images}
             imageIndex={imageIndex}
             setImageIndex={setImageIndex}
-            prevImage={prevImage}
-            nextImage={nextImage}
           />
           <div className="container-fluid py-2">
             <div className="row ">
