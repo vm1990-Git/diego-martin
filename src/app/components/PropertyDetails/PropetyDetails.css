@@ -67,13 +67,23 @@
   padding: 0;
 } */
 
-.img-fluid {
+/* .img-fluid {
   width: 100% !important;
   height: auto;
-}
+} */
 
 .btn-carousel-zoom {
   :hover {
     color: rgb(36, 36, 36);
+  }
+}
+
+.property-img-container {
+  height: 500px;
+}
+
+@media (max-width: 768px) {
+  .property-img-container {
+    height: 300px;
   }
 }

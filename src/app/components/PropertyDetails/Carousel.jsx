@@ -12,16 +12,16 @@ const ControlledCarousel = ({ index, setIndex, images }) => {
   return (
     <div
       style={{ background: "#f1f5f9", position: "relative" }}
-      className="container g-0"
+      className="container-fluid g-0"
     >
       <Carousel activeIndex={index} onSelect={handleSelect}>
         {images.map((image, i) => (
           <Carousel.Item key={i}>
-            <div className="carousel-item-container position-relative">
+            <div className="d-flex carousel-item-container position-relative property-img-container">
               <Image
                 src={image}
                 alt={`Descripción de la imagen ${i + 1}`}
-                className="img-fluid d-block mx-auto"
+                className="img-fluid object-fit-cover"
                 width={1000}
                 height={1000}
               />
