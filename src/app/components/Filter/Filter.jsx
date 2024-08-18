@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import FilterOffcanvas from "./FilterOffcanvas";
 import FilterMenu from "./FilterMenu";
 
-const Filter = ({ filters, setFilters }) => {
+const Filter = ({ filters, setFilters, handleReset }) => {
   useEffect(() => {
     console.log(filters);
   }, [filters]);
@@ -12,7 +12,11 @@ const Filter = ({ filters, setFilters }) => {
   return (
     <div className="d-flex align-self-center">
       <FilterMenu filters={filters} setFilters={setFilters} />
-      <FilterOffcanvas filters={filters} setFilters={setFilters} />
+      <FilterOffcanvas
+        filters={filters}
+        setFilters={setFilters}
+        handleReset={handleReset}
+      />
     </div>
   );
 };

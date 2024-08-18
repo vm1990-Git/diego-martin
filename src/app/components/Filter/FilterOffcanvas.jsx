@@ -27,7 +27,7 @@ const amenityLabels = {
   Comodidades_Apto_Emprendimiento: "Apto Emprendimiento",
 };
 
-const FilterOffcanvas = ({ filters, setFilters }) => {
+const FilterOffcanvas = ({ filters, setFilters, handleReset }) => {
   const handleChange = useCallback(
     (e) => {
       const { name, value, type, checked } = e.target;
@@ -74,6 +74,15 @@ const FilterOffcanvas = ({ filters, setFilters }) => {
       </div>
 
       <div className="offcanvas-body">
+        <div className="d-flex justify-content-center mb-4">
+          <button
+            type="button"
+            className="btn btn-secondary"
+            onClick={handleReset}
+          >
+            Borrar Filtros
+          </button>
+        </div>
         <div>
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="mb-3">

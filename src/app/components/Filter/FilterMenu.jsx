@@ -12,55 +12,12 @@ const FilterMenu = ({ filters, setFilters }) => {
 
   return (
     <div
-      className="position-fixed start-0 top-0 d-flex justify-content-center gap-3 border-top border-bottom border-2 p-1 z-3 bg-white"
+      className="position-fixed start-0 top-0 d-flex justify-content-center border-top border-bottom border-2 p-1 z-3 bg-white"
       style={{ width: "100vw", marginTop: "55px" }}
     >
-      <div className="dropdown">
+      <div className="dropdown d-flex flex-grow-1 justify-content-end align-items-center">
         <button
-          className="btn"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          {filters.Tipo_de_operacion || "Operación"}
-        </button>
-        <ul className="dropdown-menu">
-          <li>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={() =>
-                handleFilterChange("Tipo_de_operacion", "Alquiler")
-              }
-            >
-              Alquiler
-            </a>
-          </li>
-          <li>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={() => handleFilterChange("Tipo_de_operacion", "Venta")}
-            >
-              Venta
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <button
-        className="btn rounded-0 border-start border-end border-1 rounded-start-0"
-        type="button"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#staticBackdrop"
-        aria-controls="staticBackdrop"
-      >
-        Filtros <MdFilterList size={18} />
-      </button>
-
-      <div className="dropdown">
-        <button
-          className="btn"
+          className="btn rounded-0"
           type="button"
           data-bs-toggle="dropdown"
           aria-expanded="false"
@@ -99,6 +56,52 @@ const FilterMenu = ({ filters, setFilters }) => {
             </a>
           </li>
         </ul>
+      </div>
+
+      <div className="dropdown rounded-0 border-start border-end border-1 rounded-start-0 d-flex ">
+        <button
+          className="btn rounded-0"
+          type="button"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          {filters.Tipo_de_operacion || "Operación"}
+        </button>
+        <ul className="dropdown-menu">
+          <li>
+            <a
+              className="dropdown-item"
+              href="#"
+              onClick={() =>
+                handleFilterChange("Tipo_de_operacion", "Alquiler")
+              }
+            >
+              Alquiler
+            </a>
+          </li>
+          <li>
+            <a
+              className="dropdown-item"
+              href="#"
+              onClick={() => handleFilterChange("Tipo_de_operacion", "Venta")}
+            >
+              Venta
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div className="d-flex flex-grow-1 justify-content-start align-items-center">
+        <button
+          className="btn d-flex align-items-center gap-1 rounded-0"
+          type="button"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#staticBackdrop"
+          aria-controls="staticBackdrop"
+        >
+          <span>Filtros</span>
+          <MdFilterList size={18} />
+        </button>
       </div>
     </div>
   );

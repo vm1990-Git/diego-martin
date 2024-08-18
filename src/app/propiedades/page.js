@@ -265,6 +265,10 @@ const Index = () => {
 
   const { properties, loading, error } = useProperties();
 
+  const handleReset = () => {
+    setFilters(initialFilters);
+  };
+
   useEffect(() => {
     console.log("useEffect filters:", filters);
     setFilteredData(applyFilters(properties, filters));
@@ -311,7 +315,11 @@ const Index = () => {
 
   return (
     <div className="d-flex flex-column my-5 py-5">
-      <Filter filters={filters} setFilters={setFilters} />
+      <Filter
+        filters={filters}
+        setFilters={setFilters}
+        handleReset={handleReset}
+      />
       <div className="container card-container">
         {paginatedProperties.length > 0 ? (
           paginatedProperties.map((property) => {
