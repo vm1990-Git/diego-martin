@@ -14,13 +14,20 @@ const Modal = ({ images, imageIndex, setImageIndex }) => {
 
   return (
     <div
-      className="modal fade"
+      className="modal fade bg-dark bg-opacity-75"
       id="exampleModal"
       tabIndex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
     >
-      <div className="modal-dialog modal-dialog-centered modal-xl">
+      <button
+        type="button"
+        className="btn-close position-absolute top-0 end-0 m-4 z-3 btn-close-white"
+        data-bs-dismiss="modal"
+        aria-label="Close"
+        style={{ fontSize: "20px" }}
+      ></button>
+      <div className="modal-dialog modal-dialog-centered modal-fullscreen">
         <div
           className="modal-content border-0 rounded-0 bg-transparent"
           style={{ maxHeight: "90vh", maxWidth: "100vw" }}

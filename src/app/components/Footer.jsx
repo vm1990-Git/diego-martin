@@ -5,7 +5,6 @@ const Footer = () => {
   return (
     <>
       <footer className="bg-dark text-white text-center py-2 mt-auto">
-        <Contact />
         <div>©2024 Mil990</div>
       </footer>
     </>

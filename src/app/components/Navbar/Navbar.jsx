@@ -3,10 +3,16 @@
 import React from "react";
 import NavbarItem from "./NavbarItem";
 import Logo from "./Logo";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 
 const Navbar = () => {
   const router = useRouter();
+  const pathname = usePathname();
+
+  const contactLink = /^\/propiedades\/\d+$/.test(pathname)
+    ? "#contact"
+    : "/#contact";
+
   return (
     <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark shadow">
       <div className="container">
@@ -39,7 +45,7 @@ const Navbar = () => {
             />
             <NavbarItem
               label={"Contacto"}
-              onClick={() => router.push("#contact")}
+              onClick={() => router.push(contactLink)}
             />
           </ul>
         </div>

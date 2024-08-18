@@ -11,6 +11,7 @@ export default function Home() {
       <TopProperties />
       <AboutUs />
       <Services />
+      <Contact />
     </main>
   );
 }

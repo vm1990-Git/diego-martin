@@ -222,7 +222,7 @@ function PropertyDetails() {
 
               <Icon
                 label={"Totales"}
-                value={`${m2_cubiertos ? m2_descubiertos : 0}m² `}
+                value={`${m2_cubiertos + m2_descubiertos}m² `}
                 IconComponent={FaThLarge}
               />
             </div>

@@ -15,6 +15,7 @@ const useProperties = () => {
       try {
         setLoading(true);
         const fetchedProperties = await fetchProperties({ signal });
+        console.log(fetchedProperties);
         setProperties(fetchedProperties);
         setFilteredProperties(fetchedProperties);
       } catch (err) {

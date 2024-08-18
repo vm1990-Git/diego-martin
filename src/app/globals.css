@@ -113,3 +113,27 @@
   margin-top: -70px;
   visibility: hidden;
 }
+
+.custom-select-wrapper {
+  display: flex;
+}
+
+.custom-select-wrapper::after {
+  background-color: red;
+}
+
+.custom-select {
+  background-color: none;
+  border: none;
+  appearance: none;
+  padding-inline: 1rem;
+}
+
+.custom-select:focus {
+  outline: none;
+  background-color: none;
+}
+
+.custom-select option {
+  background-color: none;
+}
