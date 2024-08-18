@@ -180,16 +180,16 @@ const FilterOffcanvas = ({ filters, handleChange }) => {
               <label className="form-label">Ambientes</label>
               <select
                 className="form-select"
-                name="rooms"
-                value={getValueOrDefault(filters.rooms)}
+                name="Ambientes"
+                value={getValueOrDefault(filters.Ambientes)}
                 onChange={handleChange}
               >
                 <option value="">Seleccione</option>
-                <option value="1">1 ambientes</option>
-                <option value="2">2 ambientes</option>
-                <option value="3">3 ambientes</option>
-                <option value="4">4 ambientes</option>
-                <option value="5">5 o más ambientes</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 o más</option>
               </select>
             </div>
 
@@ -197,16 +197,16 @@ const FilterOffcanvas = ({ filters, handleChange }) => {
               <label className="form-label">Dormitorios</label>
               <select
                 className="form-select"
-                name="bedrooms"
-                value={getValueOrDefault(filters.bedrooms)}
+                name="Dormitorios"
+                value={getValueOrDefault(filters.Dormitorios)}
                 onChange={handleChange}
               >
                 <option value="">Seleccione</option>
-                <option value="1">1 dormitorio</option>
-                <option value="2">2 dormitorios</option>
-                <option value="3">3 dormitorios</option>
-                <option value="4">4 dormitorios</option>
-                <option value="5">5 o más dormitorios</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 o más</option>
               </select>
             </div>
 
@@ -214,24 +214,24 @@ const FilterOffcanvas = ({ filters, handleChange }) => {
               <label className="form-label">Baños</label>
               <select
                 className="form-select"
-                name="bathrooms"
-                value={getValueOrDefault(filters.bathrooms)}
+                name="Banos"
+                value={getValueOrDefault(filters.Banos)}
                 onChange={handleChange}
               >
                 <option value="">Seleccione</option>
-                <option value="1">1 baño</option>
-                <option value="2">2 baños</option>
-                <option value="3">3 baños</option>
-                <option value="4">4 baños</option>
-                <option value="5">5 o más baños</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 o más</option>
               </select>
             </div>
 
-            <div class="accordion" id="accordionExample">
-              <div class="accordion-item">
-                <h2 class="accordion-header">
+            <div className="accordion" id="accordionExample">
+              <div className="accordion-item">
+                <h2 className="accordion-header">
                   <button
-                    class="accordion-button collapsed"
+                    className="accordion-button collapsed"
                     type="button"
                     data-bs-toggle="collapse"
                     data-bs-target="#collapseTwo"
@@ -243,11 +243,11 @@ const FilterOffcanvas = ({ filters, handleChange }) => {
                 </h2>
                 <div
                   id="collapseTwo"
-                  class="accordion-collapse collapse"
+                  className="accordion-collapse collapse"
                   data-bs-parent="#accordionExample"
                 >
-                  <div class="accordion-body">
-                    <div class="m-2">
+                  <div className="accordion-body">
+                    <div className="m-2">
                       <div className="row g-0">
                         {checkboxKeys.map((key) => (
                           <div

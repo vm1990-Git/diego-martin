@@ -1,6 +1,8 @@
 import React from "react";
 
 const FilterMenu = ({ filters, setFilters }) => {
+  console.log(filters);
+
   const handleOperationChange = (value) => {
     setFilters((prev) => ({
       ...prev,

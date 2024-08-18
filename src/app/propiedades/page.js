@@ -1,243 +1,27 @@
-// "use client";
-// import React, { useCallback, useEffect, useState } from "react";
-// import Card from "../components/Card";
-// import FilterSection from "../components/FilterSection";
-// import useProperties from "../../hooks/useProperties";
-
-// const applyFilters = (properties, filters) => {
-//   let filtered = properties;
-
-//   if (filters.rooms) {
-//     filtered = filtered.filter(
-//       (property) =>
-//         property.attributes.Ambientes &&
-//         property.attributes.Ambientes.includes(filters.rooms)
-//     );
-//   }
-
-//   if (filters.operationType) {
-//     filtered = filtered.filter(
-//       (property) =>
-//         property.attributes.Tipo_de_operacion === filters.operationType
-//     );
-//   }
-
-//   if (filters.propertyType) {
-//     filtered = filtered.filter(
-//       (property) =>
-//         property.attributes.tipo_de_inmueble &&
-//         property.attributes.tipo_de_inmueble.includes(filters.propertyType)
-//     );
-//   }
-
-//   if (filters.currency) {
-//     filtered = filtered.filter((property) =>
-//       filters.currency === "usd"
-//         ? property.attributes.valor_dolares
-//         : property.attributes.valor_pesos
-//     );
-//   }
-
-//   if (filters.priceRange.min || filters.priceRange.max) {
-//     filtered = filtered.filter((property) => {
-//       const price =
-//         filters.currency === "usd"
-//           ? property.attributes.valor_dolares
-//           : property.attributes.valor_pesos;
-//       return (
-//         (!filters.priceRange.min ||
-//           parseFloat(price) >= parseFloat(filters.priceRange.min)) &&
-//         (!filters.priceRange.max ||
-//           parseFloat(price) <= parseFloat(filters.priceRange.max))
-//       );
-//     });
-//   }
-
-//   if (filters.bedrooms) {
-//     filtered = filtered.filter(
-//       (property) =>
-//         property.attributes.Dormitorios &&
-//         property.attributes.Dormitorios.includes(filters.bedrooms)
-//     );
-//   }
-
-//   if (filters.amenities) {
-//     filtered = filtered.filter(
-//       (property) =>
-//         property.attributes.Comodidades &&
-//         property.attributes.Comodidades.includes(filters.amenities)
-//     );
-//   }
-
-//   if (filters.additionalOptions.credit) {
-//     filtered = filtered.filter((property) => property.attributes.Apto_credito);
-//   }
-//   if (filters.additionalOptions.parking) {
-//     filtered = filtered.filter(
-//       (property) => property.attributes.espacio_para_autos
-//     );
-//   }
-
-//   if (filters.location) {
-//     filtered = filtered.filter((property) =>
-//       property.attributes.Direccion.toLowerCase().includes(
-//         filters.location.toLowerCase()
-//       )
-//     );
-//   }
-
-//   return filtered;
-// };
-
-// const Index = () => {
-//   const [page, setPage] = useState(1);
-//   const [pageSize] = useState(8);
-
-//   const {
-//     properties,
-//     filteredProperties,
-//     setFilteredProperties,
-//     loading,
-//     error,
-//   } = useProperties();
-
-//   const [filters, setFilters] = useState({
-//     operationType: "",
-//     propertyType: "",
-//     currency: "",
-//     priceRange: { min: "", max: "" },
-//     rooms: "",
-//     bedrooms: "",
-//     bathrooms: "",
-//     amenities: "",
-//     additionalOptions: {
-//       credit: false,
-//       parking: false,
-//     },
-//     location: "",
-//   });
-
-//   const filteredData = applyFilters(properties, filters);
-
-//   const paginatedProperties = filteredData.slice(0, page * pageSize);
-
-//   useEffect(() => {
-//     setFilteredProperties(paginatedProperties);
-//   }, [page, filteredData]);
-
-//   const handleScroll = useCallback(() => {
-//     if (
-//       window.innerHeight + document.documentElement.scrollTop + 1 >=
-//       document.documentElement.scrollHeight
-//     ) {
-//       if (!loading && paginatedProperties.length < filteredData.length) {
-//         setPage((prevPage) => prevPage + 1);
-//       }
-//     }
-//   }, [loading, paginatedProperties, filteredData]);
-
-//   useEffect(() => {
-//     window.addEventListener("scroll", handleScroll);
-//     return () => window.removeEventListener("scroll", handleScroll);
-//   }, [handleScroll]);
-
-//   if (loading && page === 1) {
-//     return (
-//       <div className="loading-container">
-//         <div className="spinner-border" role="status">
-//           <span className="visually-hidden">Loading...</span>
-//         </div>
-//         <span className="my-3 fw-semibold">Cargando Propiedades</span>
-//       </div>
-//     );
-//   }
-
-//   if (error) {
-//     return (
-//       <div className="text-center">
-//         Error loading properties: {error.message}
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="d-flex flex-column my-5 py-5">
-//       <h2 className="text-center h2 fw-semibold pb-3">Propiedades</h2>
-//       <FilterSection filters={filters} setFilters={setFilters} />
-//       <div className="container card-container">
-//         {filteredProperties.length > 0 ? (
-//           filteredProperties.map((property) => {
-//             const imageUrl =
-//               property.attributes.Imagen?.data?.[0]?.attributes?.url ||
-//               "/assets/NoImage.png";
-
-//             return (
-//               <Card
-//                 key={property.id}
-//                 id={property.id}
-//                 image={imageUrl}
-//                 title={property.attributes.Direccion || "Dirección"}
-//                 subtitle={property.attributes.descripcion || "Localidad"}
-//                 text={property.attributes.sub_descripcion || "Descripción"}
-//                 priceUsd={property.attributes.valor_dolares || "Consultar"}
-//                 pricePesos={property.attributes.valor_pesos || "Consultar"}
-//               />
-//             );
-//           })
-//         ) : (
-//           <p>No properties available.</p>
-//         )}
-//         {loading && page > 1 && (
-//           <div className="text-center">
-//             <div className="spinner-border" role="status">
-//               <span className="visually-hidden">Loading...</span>
-//             </div>
-//           </div>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Index;
-
 "use client";
 import React, { useCallback, useEffect, useState } from "react";
 import Card from "../components/Card";
-import FilterSection from "../components/Filter/FilterSection";
 import useProperties from "../../hooks/useProperties";
+import Filter from "../components/Filter/Filter";
 
 const applyFilters = (properties, filters) => {
   let filtered = properties;
 
-  if (filters.rooms) {
+  if (filters.Tipo_de_operacion) {
     filtered = filtered.filter(
       (property) =>
-        property.attributes.Ambientes &&
-        property.attributes.Ambientes.includes(filters.rooms)
+        property.attributes.Tipo_de_operacion &&
+        property.attributes.Tipo_de_operacion.includes(
+          filters.Tipo_de_operacion
+        )
     );
   }
 
-  if (filters.operationType) {
-    filtered = filtered.filter(
-      (property) =>
-        property.attributes.Tipo_de_operacion === filters.operationType
-    );
-  }
-
-  if (filters.propertyType) {
+  if (filters.tipo_de_inmueble) {
     filtered = filtered.filter(
       (property) =>
         property.attributes.tipo_de_inmueble &&
-        property.attributes.tipo_de_inmueble.includes(filters.propertyType)
-    );
-  }
-
-  if (filters.currency) {
-    filtered = filtered.filter((property) =>
-      filters.currency === "usd"
-        ? property.attributes.valor_dolares
-        : property.attributes.valor_pesos
+        property.attributes.tipo_de_inmueble.includes(filters.tipo_de_inmueble)
     );
   }
 
@@ -256,37 +40,135 @@ const applyFilters = (properties, filters) => {
     });
   }
 
-  if (filters.bedrooms) {
+  if (filters.currency) {
+    filtered = filtered.filter((property) =>
+      filters.currency === "usd"
+        ? property.attributes.valor_dolares
+        : property.attributes.valor_pesos
+    );
+  }
+
+  if (filters.Ambientes) {
+    filtered = filtered.filter(
+      (property) =>
+        property.attributes.Ambientes &&
+        property.attributes.Ambientes.includes(filters.Ambientes)
+    );
+  }
+
+  if (filters.Dormitorios) {
     filtered = filtered.filter(
       (property) =>
         property.attributes.Dormitorios &&
-        property.attributes.Dormitorios.includes(filters.bedrooms)
+        property.attributes.Dormitorios.includes(filters.Dormitorios)
     );
   }
 
-  if (filters.amenities) {
+  if (filters.Banos) {
     filtered = filtered.filter(
       (property) =>
-        property.attributes.Comodidades &&
-        property.attributes.Comodidades.includes(filters.amenities)
+        property.attributes.Banos &&
+        property.attributes.Banos.includes(filters.Banos)
     );
   }
 
-  if (filters.additionalOptions.credit) {
-    filtered = filtered.filter((property) => property.attributes.Apto_credito);
-  }
-  if (filters.additionalOptions.parking) {
+  if (filters.espacio_para_autos) {
     filtered = filtered.filter(
       (property) => property.attributes.espacio_para_autos
     );
   }
 
-  if (filters.location) {
+  if (filters.Varios_Apto_Credito) {
+    filtered = filtered.filter(
+      (property) => property.attributes.Varios_Apto_Credito
+    );
+  }
+
+  if (filters.Localidades) {
+    filtered = filtered.filter(
+      (property) =>
+        property.attributes.Localidades &&
+        property.attributes.Localidades.includes(filters.Localidades)
+    );
+  }
+
+  const comodidadesKeys = [
+    "Comodidades_Balcon",
+    "Comodidades_Lavadero",
+    "Comodidades_Dep_Servicio",
+    "Comodidades_Espacio_al_frente",
+    "Comodidades_Fondo_libre",
+    "Comodidades_Ascensor",
+    "Comodidades_Quincho",
+    "Comodidades_SUM",
+    "Comodidades_Parrilla",
+    "Comodidades_Piscina",
+    "Comodidades_Vigilancia",
+    "Comodidades_Terraza",
+    "Comodidades_Apto_Emprendimiento",
+  ];
+
+  comodidadesKeys.forEach((key) => {
+    if (filters[key]) {
+      filtered = filtered.filter(
+        (property) => property.attributes[key] === true
+      );
+    }
+  });
+
+  const variosKeys = [
+    "Varios_Apto_Profesional",
+    "Varios_Apto_Credito",
+    "Varios_Destacado",
+    "Varios_Garantia_Propietaria",
+    "Varios_Seguro_de_caucion",
+  ];
+
+  variosKeys.forEach((key) => {
+    if (filters[key]) {
+      filtered = filtered.filter(
+        (property) => property.attributes[key] === true
+      );
+    }
+  });
+
+  if (filters.Direccion) {
     filtered = filtered.filter((property) =>
       property.attributes.Direccion.toLowerCase().includes(
-        filters.location.toLowerCase()
+        filters.Direccion.toLowerCase()
       )
     );
+  }
+
+  const serviciosKeys = [
+    "Servicios_Gas_Natural",
+    "Servicios_Agua_Corriente",
+    "Servicios_Luz",
+    "Servicios_Red_Cloacal",
+    "Servicios_Pavimento",
+  ];
+
+  serviciosKeys.forEach((key) => {
+    if (filters[key]) {
+      filtered = filtered.filter(
+        (property) => property.attributes[key] === true
+      );
+    }
+  });
+
+  const sortOptions = {
+    Recientes: (a, b) =>
+      new Date(b.attributes.updatedAt) - new Date(a.attributes.updatedAt),
+    "Menor Precio": (a, b) =>
+      parseFloat(a.attributes.valor_dolares) -
+      parseFloat(b.attributes.valor_dolares),
+    "Mayor Precio": (a, b) =>
+      parseFloat(b.attributes.valor_dolares) -
+      parseFloat(a.attributes.valor_dolares),
+  };
+
+  if (filters.orden in sortOptions) {
+    filtered = filtered.sort(sortOptions[filters.orden]);
   }
 
   return filtered;
@@ -295,19 +177,55 @@ const applyFilters = (properties, filters) => {
 const Index = () => {
   const [page, setPage] = useState(1);
   const [pageSize] = useState(8);
+  const initialFilters = {
+    Tipo_de_operacion: "",
+    tipo_de_inmueble: null,
+    valor_dolares: 0,
+    valor_pesos: 0,
+    Ambientes: null,
+    Dormitorios: null,
+    Banos: null,
+    espacio_para_autos: null,
+    updatedAt: null,
+    Localidades: null,
+    Comodidades_Balcon: null,
+    Comodidades_Lavadero: null,
+    Comodidades_Dep_Servicio: null,
+    Comodidades_Espacio_al_frente: null,
+    Comodidades_Fondo_libre: null,
+    Comodidades_Ascensor: null,
+    Comodidades_Quincho: null,
+    Comodidades_SUM: null,
+    Comodidades_Parrilla: null,
+    Comodidades_Piscina: null,
+    Comodidades_Vigilancia: null,
+    Comodidades_Terraza: null,
+    Comodidades_Apto_Emprendimiento: null,
+    Varios_Apto_Profesional: null,
+    Varios_Apto_Credito: null,
+    Varios_Destacado: null,
+    Varios_Garantia_Propietaria: null,
+    Varios_Seguro_de_caucion: null,
+    Servicios_Gas_Natural: null,
+    Servicios_Agua_Corriente: null,
+    Servicios_Luz: null,
+    Servicios_Red_Cloacal: null,
+    Servicios_Pavimento: null,
+    orden: "",
+    priceRange: { min: "", max: "" },
+  };
 
-  const {
-    properties,
-    filteredProperties,
-    setFilteredProperties,
-    loading,
-    error,
-  } = useProperties();
+  const [filters, setFilters] = useState(initialFilters);
+  const [filteredData, setFilteredData] = useState([]);
 
-  //infinite scroll
-  const paginatedProperties = properties.slice(0, page * pageSize);
+  const { properties, loading, error } = useProperties();
 
-  //infinite scroll
+  useEffect(() => {
+    setFilteredData(applyFilters(properties, filters));
+  }, [filters, properties]);
+
+  const paginatedProperties = filteredData.slice(0, page * pageSize);
+
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
@@ -317,15 +235,13 @@ const Index = () => {
         setPage((prevPage) => prevPage + 1);
       }
     }
-  }, [loading, paginatedProperties, properties]);
+  }, [loading, paginatedProperties.length, properties.length]);
 
-  //infinite scroll
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  //infinite scroll
   if (loading && page === 1) {
     return (
       <div className="loading-container">
@@ -347,10 +263,10 @@ const Index = () => {
 
   return (
     <div className="d-flex flex-column my-5 py-5">
-      <FilterSection />
+      <Filter filters={filters} setFilters={setFilters} />
       <div className="container card-container">
-        {properties.length > 0 ? (
-          properties.map((property) => {
+        {paginatedProperties.length > 0 ? (
+          paginatedProperties.map((property) => {
             const imageUrl =
               property.attributes.Imagen?.data?.[0]?.attributes?.url ||
               "/assets/NoImage.png";

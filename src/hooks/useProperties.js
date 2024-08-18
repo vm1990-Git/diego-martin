@@ -3,7 +3,6 @@ import { fetchProperties } from "@/api/fetchProperties";
 
 const useProperties = () => {
   const [properties, setProperties] = useState([]);
-  const [filteredProperties, setFilteredProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -17,7 +16,6 @@ const useProperties = () => {
         const fetchedProperties = await fetchProperties({ signal });
         console.log(fetchedProperties);
         setProperties(fetchedProperties);
-        setFilteredProperties(fetchedProperties);
       } catch (err) {
         if (err.name !== "AbortError") {
           setError(err);
@@ -37,8 +35,6 @@ const useProperties = () => {
 
   return {
     properties,
-    filteredProperties,
-    setFilteredProperties,
     loading,
     error,
   };

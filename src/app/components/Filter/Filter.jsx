@@ -332,50 +332,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import FilterOffcanvas from "./FilterOffcanvas";
 import FilterMenu from "./FilterMenu";
 
-const FilterSection = ({}) => {
-  const initialFilters = {
-    Tipo_de_operacion: "",
-    tipo_de_inmueble: null,
-    valor_dolares: 0,
-    valor_pesos: 0,
-    Ambientes: null,
-    Dormitorios: null,
-    Banos: null,
-    espacio_para_autos: null,
-    updatedAt: null,
-    Localidades: null,
-    // m2_cubiertos: null,
-    // m2_descubiertos: null,
-    // Lote: null,
-    Comodidades_Balcon: null,
-    Comodidades_Lavadero: null,
-    Comodidades_Dep_Servicio: null,
-    Comodidades_Espacio_al_frente: null,
-    Comodidades_Fondo_libre: null,
-    Comodidades_Ascensor: null,
-    Comodidades_Quincho: null,
-    Comodidades_SUM: null,
-    Comodidades_Parrilla: null,
-    Comodidades_Piscina: null,
-    Comodidades_Vigilancia: null,
-    Comodidades_Terraza: null,
-    Comodidades_Apto_Emprendimiento: null,
-    Varios_Apto_Profesional: null,
-    Varios_Apto_Credito: null,
-    Varios_Destacado: null,
-    Varios_Garantia_Propietaria: null,
-    Varios_Seguro_de_caucion: null,
-    Servicios_Gas_Natural: null,
-    Servicios_Agua_Corriente: null,
-    Servicios_Luz: null,
-    Servicios_Red_Cloacal: null,
-    Servicios_Pavimento: null,
-    orden: "",
-    priceRange: { min: "", max: "" },
-  };
-
-  const [filters, setFilters] = useState(initialFilters);
-
+const FilterSection = ({ filters, setFilters }) => {
   const handleChange = useCallback(
     (e) => {
       const { name, value, type, checked } = e.target;
