@@ -1,19 +1,12 @@
 import React from "react";
+import { TbArrowsUpDown } from "react-icons/tb";
+import { MdFilterList } from "react-icons/md";
 
 const FilterMenu = ({ filters, setFilters }) => {
-  console.log(filters);
-
-  const handleOperationChange = (value) => {
+  const handleFilterChange = (key, value) => {
     setFilters((prev) => ({
       ...prev,
-      Tipo_de_operacion: value,
-    }));
-  };
-
-  const handleOrderChange = (value) => {
-    setFilters((prev) => ({
-      ...prev,
-      orden: value,
+      [key]: value,
     }));
   };
 
@@ -36,7 +29,9 @@ const FilterMenu = ({ filters, setFilters }) => {
             <a
               className="dropdown-item"
               href="#"
-              onClick={() => handleOperationChange("Alquiler")}
+              onClick={() =>
+                handleFilterChange("Tipo_de_operacion", "Alquiler")
+              }
             >
               Alquiler
             </a>
@@ -45,7 +40,7 @@ const FilterMenu = ({ filters, setFilters }) => {
             <a
               className="dropdown-item"
               href="#"
-              onClick={() => handleOperationChange("Venta")}
+              onClick={() => handleFilterChange("Tipo_de_operacion", "Venta")}
             >
               Venta
             </a>
@@ -60,7 +55,7 @@ const FilterMenu = ({ filters, setFilters }) => {
         data-bs-target="#staticBackdrop"
         aria-controls="staticBackdrop"
       >
-        Filtros
+        Filtros <MdFilterList size={18} />
       </button>
 
       <div className="dropdown">
@@ -70,14 +65,17 @@ const FilterMenu = ({ filters, setFilters }) => {
           data-bs-toggle="dropdown"
           aria-expanded="false"
         >
-          {filters.orden || "Ordenar ⮃"}
+          <div className="d-flex gap-1 align-items-center">
+            {filters.orden || "Orden"}
+            <TbArrowsUpDown size={15} />
+          </div>
         </button>
         <ul className="dropdown-menu">
           <li>
             <a
               className="dropdown-item"
               href="#"
-              onClick={() => handleOrderChange("Menor Precio")}
+              onClick={() => handleFilterChange("orden", "Menor Precio")}
             >
               Menor Precio
             </a>
@@ -86,7 +84,7 @@ const FilterMenu = ({ filters, setFilters }) => {
             <a
               className="dropdown-item"
               href="#"
-              onClick={() => handleOrderChange("Mayor Precio")}
+              onClick={() => handleFilterChange("orden", "Mayor Precio")}
             >
               Mayor Precio
             </a>
@@ -95,7 +93,7 @@ const FilterMenu = ({ filters, setFilters }) => {
             <a
               className="dropdown-item"
               href="#"
-              onClick={() => handleOrderChange("Recientes")}
+              onClick={() => handleFilterChange("orden", "Recientes")}
             >
               Recientes
             </a>

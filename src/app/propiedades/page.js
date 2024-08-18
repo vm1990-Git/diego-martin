@@ -5,6 +5,9 @@ import useProperties from "../../hooks/useProperties";
 import Filter from "../components/Filter/Filter";
 
 const applyFilters = (properties, filters) => {
+  console.log("applyFilters properties:", properties);
+  console.log("applyFilters filters:", filters);
+
   let filtered = properties;
 
   if (filters.Tipo_de_operacion) {
@@ -28,9 +31,17 @@ const applyFilters = (properties, filters) => {
   if (filters.priceRange.min || filters.priceRange.max) {
     filtered = filtered.filter((property) => {
       const price =
-        filters.currency === "usd"
-          ? property.attributes.valor_dolares
-          : property.attributes.valor_pesos;
+        filters.currency === "pesos"
+          ? property.attributes.valor_pesos
+          : property.attributes.valor_dolares;
+
+      if (
+        property.attributes.valor_dolares === null &&
+        property.attributes.valor_pesos === null
+      ) {
+        return true;
+      }
+
       return (
         (!filters.priceRange.min ||
           parseFloat(price) >= parseFloat(filters.priceRange.min)) &&
@@ -41,11 +52,18 @@ const applyFilters = (properties, filters) => {
   }
 
   if (filters.currency) {
-    filtered = filtered.filter((property) =>
-      filters.currency === "usd"
+    filtered = filtered.filter((property) => {
+      if (
+        property.attributes.valor_dolares === null &&
+        property.attributes.valor_pesos === null
+      ) {
+        return true;
+      }
+
+      return filters.currency === "usd"
         ? property.attributes.valor_dolares
-        : property.attributes.valor_pesos
-    );
+        : property.attributes.valor_pesos;
+    });
   }
 
   if (filters.Ambientes) {
@@ -157,20 +175,45 @@ const applyFilters = (properties, filters) => {
   });
 
   const sortOptions = {
-    Recientes: (a, b) =>
-      new Date(b.attributes.updatedAt) - new Date(a.attributes.updatedAt),
-    "Menor Precio": (a, b) =>
-      parseFloat(a.attributes.valor_dolares) -
-      parseFloat(b.attributes.valor_dolares),
-    "Mayor Precio": (a, b) =>
-      parseFloat(b.attributes.valor_dolares) -
-      parseFloat(a.attributes.valor_dolares),
+    Recientes: (a, b) => {
+      const dateA = new Date(a.attributes.updatedAt);
+      const dateB = new Date(b.attributes.updatedAt);
+      console.log("Recientes - a:", dateA, "b:", dateB);
+      return dateB - dateA;
+    },
+    "Mayor Precio": (a, b) => {
+      const priceA =
+        filters.currency === "pesos"
+          ? parseFloat(a.attributes.valor_pesos) || 0
+          : parseFloat(a.attributes.valor_dolares) || 0;
+      const priceB =
+        filters.currency === "pesos"
+          ? parseFloat(b.attributes.valor_pesos) || 0
+          : parseFloat(b.attributes.valor_dolares) || 0;
+      console.log("Mayor Precio - a:", priceA, "b:", priceB);
+      return priceB - priceA;
+    },
+    "Menor Precio": (a, b) => {
+      const priceA =
+        filters.currency === "pesos"
+          ? parseFloat(a.attributes.valor_pesos) || 0
+          : parseFloat(a.attributes.valor_dolares) || 0;
+      const priceB =
+        filters.currency === "pesos"
+          ? parseFloat(b.attributes.valor_pesos) || 0
+          : parseFloat(b.attributes.valor_dolares) || 0;
+      console.log("Menor Precio - a:", priceA, "b:", priceB);
+      return priceA - priceB;
+    },
   };
 
   if (filters.orden in sortOptions) {
+    console.log(filters.orden);
     filtered = filtered.sort(sortOptions[filters.orden]);
+    console.log("applyFilters filtered:", filtered);
   }
 
+  console.log("applyFilters filtered:", filtered);
   return filtered;
 };
 
@@ -211,20 +254,25 @@ const Index = () => {
     Servicios_Luz: null,
     Servicios_Red_Cloacal: null,
     Servicios_Pavimento: null,
-    orden: "",
+    orden: null,
     priceRange: { min: "", max: "" },
+    currency: "",
   };
 
   const [filters, setFilters] = useState(initialFilters);
   const [filteredData, setFilteredData] = useState([]);
+  const [paginatedProperties, setPaginatedProperties] = useState([]);
 
   const { properties, loading, error } = useProperties();
 
   useEffect(() => {
+    console.log("useEffect filters:", filters);
     setFilteredData(applyFilters(properties, filters));
   }, [filters, properties]);
 
-  const paginatedProperties = filteredData.slice(0, page * pageSize);
+  useEffect(() => {
+    setPaginatedProperties(filteredData.slice(0, page * pageSize));
+  }, [filters, properties, filteredData, page, pageSize]);
 
   const handleScroll = useCallback(() => {
     if (

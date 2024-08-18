@@ -14,7 +14,7 @@ const useProperties = () => {
       try {
         setLoading(true);
         const fetchedProperties = await fetchProperties({ signal });
-        console.log(fetchedProperties);
+        console.log("useProperties -> fetchedProperties", fetchedProperties);
         setProperties(fetchedProperties);
       } catch (err) {
         if (err.name !== "AbortError") {

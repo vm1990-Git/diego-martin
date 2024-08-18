@@ -62,7 +62,7 @@ const AboutUs = () => {
               <Image
                 src="/assets/aboutUs2.png"
                 alt="Imagen del local"
-                className="img-fluid w-100 h-auto"
+                className="img-fluid"
                 style={{ objectFit: "cover" }}
                 width={500}
                 height={500}

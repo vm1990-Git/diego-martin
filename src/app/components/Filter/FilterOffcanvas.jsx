@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 const amenityLabels = {
   espacio_para_autos: "Cochera",
@@ -27,7 +27,28 @@ const amenityLabels = {
   Comodidades_Apto_Emprendimiento: "Apto Emprendimiento",
 };
 
-const FilterOffcanvas = ({ filters, handleChange }) => {
+const FilterOffcanvas = ({ filters, setFilters }) => {
+  const handleChange = useCallback(
+    (e) => {
+      const { name, value, type, checked } = e.target;
+
+      if (name === "priceRangeMin" || name === "priceRangeMax") {
+        setFilters((prev) => ({
+          ...prev,
+          priceRange: {
+            ...prev.priceRange,
+            [name === "priceRangeMin" ? "min" : "max"]: value,
+          },
+        }));
+      } else {
+        setFilters((prev) => ({
+          ...prev,
+          [name]: type === "checkbox" ? checked : value,
+        }));
+      }
+    },
+    [setFilters]
+  );
   const checkboxKeys = Object.keys(amenityLabels);
 
   const getValueOrDefault = (value) => (value === null ? "" : value);
@@ -98,8 +119,8 @@ const FilterOffcanvas = ({ filters, handleChange }) => {
               <label className="form-label">Tipo de Propiedad</label>
               <select
                 className="form-select"
-                name="propertyType"
-                value={getValueOrDefault(filters.propertyType)}
+                name="tipo_de_inmueble"
+                value={getValueOrDefault(filters.tipo_de_inmueble)}
                 onChange={handleChange}
               >
                 <option value="">Seleccione</option>
