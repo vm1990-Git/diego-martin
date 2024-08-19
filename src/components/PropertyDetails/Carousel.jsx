@@ -1,5 +1,4 @@
 import Carousel from "react-bootstrap/Carousel";
-import "./PropetyDetails.css";
 import { HiArrowsPointingOut } from "react-icons/hi2";
 
 import Image from "next/image";

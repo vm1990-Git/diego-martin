@@ -2,16 +2,17 @@
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
-import { IoCubeSharp, IoBed } from "react-icons/io5";
-import { FaBath, FaThLarge, FaObjectGroup, FaHome } from "react-icons/fa";
-import { usePathname } from "next/navigation";
-import { fetchPropertiyInfo } from "../../../api/fetchPropertiyInfo";
-import { FaLocationDot } from "react-icons/fa6";
+import { fetchPropertiyInfo } from "../../api/fetchPropertiyInfo";
 import Modal from "./Modal";
 import ControlledCarousel from "./Carousel";
 import Map from "./Map";
 import Details from "./Details";
 import Icon from "./Icon";
+
+import { IoCubeSharp, IoBed } from "react-icons/io5";
+import { FaBath, FaThLarge, FaObjectGroup, FaHome } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import { FaLocationDot } from "react-icons/fa6";
 
 function PropertyDetails() {
   const [imageIndex, setImageIndex] = useState(0);

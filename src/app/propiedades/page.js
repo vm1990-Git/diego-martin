@@ -1,7 +1,7 @@
 "use client";
-import Card from "../components/Card";
-import Filter from "../components/Filter/Filter";
-import LoadingError from "../components/LoadingError";
+import Card from "../../components/Card";
+import Filter from "../../components/Filter/Filter";
+import LoadingError from "../../components/LoadingError";
 import useFilteredProperties from "../../hooks/useFilteredProperties";
 
 const Index = () => {
@@ -82,7 +82,12 @@ const Index = () => {
             );
           })
         ) : (
-          <p>No properties available.</p>
+          <div className="loading-container" style={{ height: "300px" }}>
+            <div className="spinner-border" role="status">
+              <span className="visually-hidden">Loading...</span>
+            </div>
+            <span className="my-3 fw-semibold">Cargando Propiedades</span>
+          </div>
         )}
         {loading && page > 1 && (
           <div className="text-center">
