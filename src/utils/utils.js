@@ -6,7 +6,6 @@ export const makePhoneCall = (phoneNumber) => {
   if (isMobileDevice()) {
     window.location.href = `tel:${phoneNumber}`;
   } else {
-    console.warn("Phone call feature is only available on mobile devices.");
   }
 };
 
@@ -15,9 +14,6 @@ export const openWhatsapp = (phoneNumber) => {
 };
 
 export const applyFilters = (properties, filters) => {
-  console.log("applyFilters properties:", properties);
-  console.log("applyFilters filters:", filters);
-
   let filtered = properties;
 
   if (filters.Tipo_de_operacion) {
@@ -188,7 +184,6 @@ export const applyFilters = (properties, filters) => {
     Recientes: (a, b) => {
       const dateA = new Date(a.attributes.updatedAt);
       const dateB = new Date(b.attributes.updatedAt);
-      console.log("Recientes - a:", dateA, "b:", dateB);
       return dateB - dateA;
     },
     "Mayor Precio": (a, b) => {
@@ -200,7 +195,6 @@ export const applyFilters = (properties, filters) => {
         filters.currency === "pesos"
           ? parseFloat(b.attributes.valor_pesos) || 0
           : parseFloat(b.attributes.valor_dolares) || 0;
-      console.log("Mayor Precio - a:", priceA, "b:", priceB);
       return priceB - priceA;
     },
     "Menor Precio": (a, b) => {
@@ -212,17 +206,13 @@ export const applyFilters = (properties, filters) => {
         filters.currency === "pesos"
           ? parseFloat(b.attributes.valor_pesos) || 0
           : parseFloat(b.attributes.valor_dolares) || 0;
-      console.log("Menor Precio - a:", priceA, "b:", priceB);
       return priceA - priceB;
     },
   };
 
   if (filters.orden in sortOptions) {
-    console.log(filters.orden);
     filtered = filtered.sort(sortOptions[filters.orden]);
-    console.log("applyFilters filtered:", filtered);
   }
 
-  console.log("applyFilters filtered:", filtered);
   return filtered;
 };

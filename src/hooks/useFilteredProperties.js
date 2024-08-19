@@ -17,7 +17,7 @@ const useFilteredProperties = (initialFilters) => {
 
   useEffect(() => {
     setPaginatedProperties(filteredData.slice(0, page * pageSize));
-  }, [filteredData, page, pageSize]);
+  }, [filteredData, page, pageSize, filters]);
 
   const handleScroll = useCallback(() => {
     if (

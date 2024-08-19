@@ -81,6 +81,13 @@ const Index = () => {
               />
             );
           })
+        ) : !loading ? (
+          <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "50vh", width: "100vw" }}
+          >
+            <span className="fw-semibold">No hay propiedades para mostrar</span>
+          </div>
         ) : (
           <div className="loading-container" style={{ height: "300px" }}>
             <div className="spinner-border" role="status">

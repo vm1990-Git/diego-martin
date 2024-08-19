@@ -43,6 +43,7 @@ const Modal = ({ images, imageIndex, setImageIndex }) => {
                     className="img-fluid object-fit-contain"
                     width={1500}
                     height={1000}
+                    priority={i === 0}
                   />
                 </div>
               </Carousel.Item>

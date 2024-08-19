@@ -46,6 +46,7 @@ const Card = ({
         width={200}
         height={200}
         className="card-img-top object-fit-cover"
+        priority
       />
 
       <div className="card-body p-1">

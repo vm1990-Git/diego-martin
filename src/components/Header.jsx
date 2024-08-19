@@ -39,6 +39,7 @@ const Header = () => {
             height={500}
             className="d-block w-100"
             style={{ objectFit: "cover" }}
+            priority
           />
         </div>
         <div className="carousel-item">
@@ -49,6 +50,7 @@ const Header = () => {
             height={500}
             className="d-block w-100"
             style={{ objectFit: "cover" }}
+            priority
           />
         </div>
         <div className="carousel-item">
@@ -59,6 +61,7 @@ const Header = () => {
             height={500}
             className="d-block w-100"
             style={{ objectFit: "cover" }}
+            priority
           />
         </div>
       </div>
