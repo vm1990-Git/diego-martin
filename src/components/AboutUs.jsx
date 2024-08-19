@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Image from "next/image";
+import { Collapse } from "react-bootstrap";
 
 const AboutUs = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -32,26 +33,28 @@ const AboutUs = () => {
                 nuestros clientes.
               </p>
               <p className="mb-2">Nuestro cliente es USTED.</p>
-              <div
-                className={`row ${
-                  isExpanded ? "d-block" : "d-none d-md-block"
-                }`}
-              >
-                <p className="mb-2">
-                  Usted, particular que busca una casa para comprar o en
-                  alquiler, ya sea como residencia habitual, segunda vivienda o
-                  inversión futura. Usted, profesional que busca el
-                  emplazamiento adecuado para su negocio. Y usted, propietario
-                  que busca comprador o inquilino para su inmueble.
-                </p>
-                <p className="mb-2">
-                  Nosotros creemos que hay una casa para cada persona y una
-                  persona para cada casa, por eso entendemos el aspecto humano
-                  de nuestro negocio y trabajamos cuidando la relación personal
-                  para prestarle el mejor asesoramiento durante todo el proceso
-                  de compra-venta y alquiler.
-                </p>
-              </div>
+              <Collapse in={isExpanded}>
+                <div
+                  className={`row ${
+                    isExpanded ? "d-block" : "d-none d-md-block"
+                  }`}
+                >
+                  <p className="mb-2">
+                    Usted, particular que busca una casa para comprar o en
+                    alquiler, ya sea como residencia habitual, segunda vivienda
+                    o inversión futura. Usted, profesional que busca el
+                    emplazamiento adecuado para su negocio. Y usted, propietario
+                    que busca comprador o inquilino para su inmueble.
+                  </p>
+                  <p className="mb-2">
+                    Nosotros creemos que hay una casa para cada persona y una
+                    persona para cada casa, por eso entendemos el aspecto humano
+                    de nuestro negocio y trabajamos cuidando la relación
+                    personal para prestarle el mejor asesoramiento durante todo
+                    el proceso de compra-venta y alquiler.
+                  </p>
+                </div>
+              </Collapse>
               <div className="col text-center d-md-none d-block">
                 <button className="btn mt-3 text-white" onClick={handleToggle}>
                   {isExpanded ? "Leer menos" : "Leer más"}
