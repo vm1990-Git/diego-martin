@@ -4,10 +4,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { useEffect, useState } from "react";
 import { IoCubeSharp, IoBed } from "react-icons/io5";
 import { FaBath, FaThLarge, FaObjectGroup, FaHome } from "react-icons/fa";
-import Modal from "./Modal";
-import ControlledCarousel from "./Carousel";
 import { usePathname } from "next/navigation";
 import { fetchPropertiyInfo } from "@/api/fetchPropertiyInfo";
+import { FaSquare } from "react-icons/fa6";
+import Modal from "./Modal";
+import ControlledCarousel from "./Carousel";
 import Map from "./Map";
 import Details from "./Details";
 import Icon from "./Icon";
@@ -33,7 +34,6 @@ function PropertyDetails() {
     tipo_de_inmueble = "No disponible",
     valor_dolares = 0,
     valor_pesos = 0,
-    Apto_credito = false,
     Ambientes = "No disponible",
     Dormitorios = 0,
     Banos = 0,
@@ -118,7 +118,7 @@ function PropertyDetails() {
   const comodidadesList = [
     { key: "Comodidades_Balcon", label: "Balcon" },
     { key: "Comodidades_Lavadero", label: "Lavadero" },
-    { key: "Comodidades_Dep_Servicio", label: "Dependencia de Servicio" },
+    { key: "Comodidades_Dep_Servicio", label: "Dep. Servicio" },
     { key: "Comodidades_Espacio_al_frente", label: "Espacio al Frente" },
     { key: "Comodidades_Fondo_libre", label: "Fondo Libre" },
     { key: "Comodidades_Ascensor", label: "Ascensor" },
@@ -162,13 +162,19 @@ function PropertyDetails() {
             setImageIndex={setImageIndex}
           />
           <div className="container-fluid py-2">
-            <div className="row ">
+            <div className="row">
               <div className="col-12 col-md-6">
-                <h3 className="">{Direccion}</h3>
+                <h3 className="fw-semibold">{Direccion}</h3>
+                <h4 className="fw-semibold">{Localidades}</h4>
               </div>
               <div className="col-12 col-md-6 text-md-end">
-                <h3>{formatNumber(displayPrice)}</h3>
+                <h3 className="fw-semibold">{formatNumber(displayPrice)}</h3>
               </div>
+            </div>
+            <div>
+              <h5 className="fw-semibold">
+                {`${Tipo_de_operacion} - ${tipo_de_inmueble}`}{" "}
+              </h5>
             </div>
           </div>
           <div className="px-4">
@@ -178,9 +184,12 @@ function PropertyDetails() {
             >
               {Titulo}
             </p>
+
             <p>{descripcion}</p>
+            <p> {Lote && <p>{`Lote ${Lote}`}</p>}</p>
             <hr className="custom-line" />
             <p>{sub_descripcion}</p>
+
             <div className="d-none d-lg-block">
               <Map src={src} />
             </div>

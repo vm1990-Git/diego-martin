@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import NavbarItem from "./NavbarItem";
 import Logo from "./Logo";
 import { useRouter, usePathname } from "next/navigation";
@@ -8,13 +8,37 @@ import { useRouter, usePathname } from "next/navigation";
 const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const navRef = useRef(null);
 
   const contactLink = /^\/propiedades\/\d+$/.test(pathname)
     ? "#contact"
     : "/#contact";
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const handleClickOutside = (event) => {
+        if (navRef.current && !navRef.current.contains(event.target)) {
+          const navbarToggler = document.querySelector(".navbar-toggler");
+          const isExpanded =
+            navbarToggler.getAttribute("aria-expanded") === "true";
+          if (isExpanded) {
+            navbarToggler.click();
+          }
+        }
+      };
+
+      document.addEventListener("click", handleClickOutside);
+      return () => {
+        document.removeEventListener("click", handleClickOutside);
+      };
+    }
+  }, []);
+
   return (
-    <nav className="navbar fixed-top navbar-expand-md navbar-dark bg-dark shadow">
+    <nav
+      className="navbar fixed-top navbar-expand-md navbar-dark bg-dark shadow"
+      ref={navRef}
+    >
       <div className="container">
         <Logo />
         <button

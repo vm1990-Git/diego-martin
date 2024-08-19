@@ -2,8 +2,6 @@
 
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "./PropetyDetails.css";
 import Image from "next/image";
 import Carousel from "react-bootstrap/Carousel";
 
