@@ -56,7 +56,7 @@ const FilterOffcanvas = ({ filters, setFilters, handleReset }) => {
   return (
     <div
       className="offcanvas offcanvas-end"
-      data-bs-backdrop="static"
+      data-bs-backdrop="true"
       tabIndex="-1"
       id="staticBackdrop"
       aria-labelledby="staticBackdropLabel"

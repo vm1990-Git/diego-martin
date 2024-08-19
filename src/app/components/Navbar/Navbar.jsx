@@ -37,6 +37,7 @@ const Navbar = () => {
   return (
     <nav
       className="navbar fixed-top navbar-expand-md navbar-dark bg-dark shadow"
+      data-bs-backdrop="true"
       ref={navRef}
     >
       <div className="container">
