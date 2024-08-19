@@ -6,8 +6,8 @@ import React from "react";
 const Card = ({
   id,
   image,
+  direc = "",
   title = "",
-  text = "",
   priceUsd = "Consultar",
   pricePesos = "Consultar",
 }) => {
@@ -27,7 +27,7 @@ const Card = ({
       ? formatPrice(pricePesos, "$ ")
       : "Consultar";
 
-  const imageAlt = title || "Card image";
+  const imageAlt = direc || "Card image";
 
   const handleClick = () => {
     const url = `/propiedades/${id}`;
@@ -48,10 +48,10 @@ const Card = ({
         className="card-img-top object-fit-cover"
       />
 
-      <div className="card-body">
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item fw-bold">{title}</li>
-          <li className="list-group-item fw-semibold text-danger">{text}</li>
+      <div className="card-body p-1">
+        <ul className="list-group list-group-flush rounded-2">
+          <li className="list-group-item fw-bold py-1">{direc}</li>
+          <li className="list-group-item py-1">{title}</li>
         </ul>
       </div>
 

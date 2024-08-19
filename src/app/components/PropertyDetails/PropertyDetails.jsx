@@ -6,6 +6,7 @@ import { IoCubeSharp, IoBed } from "react-icons/io5";
 import { FaBath, FaThLarge, FaObjectGroup, FaHome } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { fetchPropertiyInfo } from "../../../api/fetchPropertiyInfo";
+import { FaLocationDot } from "react-icons/fa6";
 import Modal from "./Modal";
 import ControlledCarousel from "./Carousel";
 import Map from "./Map";
@@ -160,20 +161,21 @@ function PropertyDetails() {
             imageIndex={imageIndex}
             setImageIndex={setImageIndex}
           />
-          <div className="container-fluid py-2">
+          <div className="container-fluid py-2 mb-2">
             <div className="row">
-              <div className="col-12 col-md-6">
-                <h3 className="fw-semibold">{Direccion}</h3>
-                <h4 className="fw-semibold">{Localidades}</h4>
+              <div className="col-12 col-md-6 text-md-start">
+                <h3 className="fw-semibold">{Titulo}</h3>
               </div>
               <div className="col-12 col-md-6 text-md-end">
-                <h3 className="fw-semibold">{formatNumber(displayPrice)}</h3>
+                <h3 className="fw-semibold">{`${formatNumber(
+                  displayPrice
+                )}`}</h3>
               </div>
             </div>
             <div>
-              <h5 className="fw-semibold">
+              <h6 className="" style={{ color: "#727272" }}>
                 {`${Tipo_de_operacion} - ${tipo_de_inmueble}`}{" "}
-              </h5>
+              </h6>
             </div>
           </div>
           <div className="px-4">
@@ -185,11 +187,15 @@ function PropertyDetails() {
             </p>
 
             <p>{descripcion}</p>
-            <p> {Lote && <p>{`Lote ${Lote}`}</p>}</p>
+            <p> {Lote && <span>{`Lote ${Lote}`}</span>}</p>
             <hr className="custom-line" />
             <p>{sub_descripcion}</p>
 
             <div className="d-none d-lg-block">
+              <div className="d-flex align-items-center">
+                <FaLocationDot size={15} />
+                <span className="fw-semibold">{`${Direccion}, ${Localidades}`}</span>
+              </div>
               <Map src={src} />
             </div>
           </div>
@@ -240,6 +246,12 @@ function PropertyDetails() {
           <Details title={"Servicios"} list={serviciosList} />
         </div>
         <div className="d-lg-none d-block g-0">
+          <div className="container py-2">
+            <div className="d-flex align-items-center">
+              <FaLocationDot size={15} />
+              <span className="fw-semibold">{`${Direccion}, ${Localidades}`}</span>
+            </div>
+          </div>
           <Map src={src} />
         </div>
       </div>

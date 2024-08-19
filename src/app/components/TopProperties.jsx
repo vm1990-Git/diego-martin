@@ -39,9 +39,8 @@ const TopProperties = () => {
                 key={property.id}
                 id={property.id}
                 image={imageUrl}
-                title={property.attributes.Direccion || "Dirección"}
-                subtitle={property.attributes.descripcion || "Localidad"}
-                text={property.attributes.sub_descripcion || "Descripción"}
+                direc={property.attributes.Direccion || "Dirección"}
+                title={property.attributes.Titulo || "Localidad"}
                 priceUsd={property.attributes.valor_dolares || "Consultar"}
                 pricePesos={property.attributes.valor_pesos || "Consultar"}
               />
