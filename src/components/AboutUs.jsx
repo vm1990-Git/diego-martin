@@ -60,7 +60,7 @@ const AboutUs = () => {
             </div>
             <div className="col-xl-4 d-none d-xl-flex">
               <Image
-                src="/assets/aboutUs2.png"
+                src="/assets/DMP.png"
                 alt="Imagen del local"
                 className="img-fluid"
                 style={{ objectFit: "cover" }}
