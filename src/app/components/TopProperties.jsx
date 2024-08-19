@@ -2,7 +2,7 @@
 
 import React from "react";
 import Card from "./Card";
-import useProperties from "@/hooks/useProperties";
+import useProperties from "../../hooks/useProperties";
 
 // Función para obtener propiedades aleatorias
 const getRandomProperties = (properties, num) => {

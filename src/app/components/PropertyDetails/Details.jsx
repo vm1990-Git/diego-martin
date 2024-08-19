@@ -2,7 +2,7 @@ import React from "react";
 
 const Details = ({ title, list }) => {
   if (list.length === 0) {
-    return null; // No renderiza nada si el array está vacío
+    return null;
   }
 
   return (

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { fetchProperties } from "@/api/fetchProperties";
+
+import { fetchProperties } from "../api/fetchProperties";
 
 const useProperties = () => {
   const [properties, setProperties] = useState([]);

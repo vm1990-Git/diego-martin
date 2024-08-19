@@ -4,7 +4,7 @@ import React from "react";
 import { FaLocationDot } from "react-icons/fa6";
 import { IoIosMail, IoLogoWhatsapp } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
-import { makePhoneCall } from "@/app/utils/utils";
+import { makePhoneCall, openWhatsapp } from "../../../utils/utils.js";
 
 const ContactInfo = () => {
   return (

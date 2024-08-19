@@ -1,5 +1,5 @@
-import Contact from "@/app/components/ContactSection/Contact";
-import PropertyDetails from "@/app/components/PropertyDetails/PropertyDetails";
+import Contact from "../../components/ContactSection/Contact";
+import PropertyDetails from "../../components/PropertyDetails/PropertyDetails";
 
 const Page = () => {
   return (

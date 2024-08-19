@@ -1,10 +1,10 @@
 .btn-custom-arrow {
-  color: #333; /* Color inicial de la flecha */
-  transition: color 0.3s ease; /* Transición suave al cambiar el color */
+  color: #333;
+  transition: color 0.3s ease;
 }
 
 .btn-custom-arrow:hover {
-  color: #fff; /* Cambia el color de la flecha a blanco cuando pasas el mouse por encima */
+  color: #fff;
 }
 
 .carousel-item-container {
@@ -12,31 +12,17 @@
 }
 
 .icon-button {
-  background: transparent; /* Sin fondo para que solo se vea el ícono */
-  border: none; /* Sin borde */
-  padding: 0; /* Sin padding para ajustar el tamaño del ícono */
-  font-size: 1.5rem; /* Ajusta el tamaño del ícono */
-  color: #999797; /* Color del ícono, ajusta según tu diseño */
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1.5rem;
+  color: #999797;
   z-index: 50;
 }
 
 .icon-button:hover {
-  color: black; /* Cambia el color del ícono al pasar el mouse sobre él */
+  color: black;
 }
-
-/* .carousel-item-container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-}
-
-.carousel-item-container img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-} */
 
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
@@ -57,20 +43,6 @@
 .carousel-control-next:hover {
   filter: brightness(0);
 }
-/* 
-.modal-dialog {
-  max-width: 75%;
-  width: 75%;
-}
-
-.modal-content {
-  padding: 0;
-} */
-
-/* .img-fluid {
-  width: 100% !important;
-  height: auto;
-} */
 
 .btn-carousel-zoom {
   :hover {
