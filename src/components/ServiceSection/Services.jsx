@@ -21,7 +21,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="services" className="section-offset">
+    <section id="services">
       <div className="d-flex flex-column py-4">
         <h2 className="text-center h2 fw-bold pb-4">Nuestros Servicios</h2>
         <div className="container">

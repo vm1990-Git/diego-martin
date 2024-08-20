@@ -13,7 +13,7 @@ const AboutUs = () => {
   };
 
   return (
-    <section id="about-us" className="section-offset">
+    <section id="about-us">
       <div
         className="flex-column align-items-center py-4 text-white"
         style={{

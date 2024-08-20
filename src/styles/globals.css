@@ -100,20 +100,6 @@
   margin: 10px 0;
 }
 
-.section-offset {
-  position: relative;
-  padding-top: 60px;
-  margin-top: -60px;
-}
-
-.section-offset::before {
-  content: "";
-  display: block;
-  height: 70px;
-  margin-top: -70px;
-  visibility: hidden;
-}
-
 .custom-select-wrapper {
   display: flex;
 }

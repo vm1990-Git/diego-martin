@@ -55,7 +55,7 @@ const Index = () => {
   const page = useFilteredProperties.page;
 
   return (
-    <div className="d-flex flex-column my-5 py-5">
+    <div className="d-flex flex-column mt-5 pt-5">
       <Filter
         filters={filters}
         setFilters={setFilters}

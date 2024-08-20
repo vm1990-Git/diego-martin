@@ -38,7 +38,6 @@ function PropertyDetails() {
     Ambientes = "No disponible",
     Dormitorios = 0,
     Banos = 0,
-    espacio_para_autos = false,
     coordenadas = null,
     Localidades = "No disponible",
     m2_cubiertos = 0,
@@ -93,7 +92,14 @@ function PropertyDetails() {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="loading-container">
+        <div className="spinner-border" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <span className="my-3 fw-semibold">Cargando Propiedad</span>
+      </div>
+    );
   }
 
   if (error) {
@@ -103,18 +109,6 @@ function PropertyDetails() {
   if (!propertyInfo) {
     return <div>No property information available.</div>;
   }
-
-  const prevImage = () => {
-    setImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  const nextImage = () => {
-    setImageIndex((prevIndex) =>
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
 
   const comodidadesList = [
     { key: "Comodidades_Balcon", label: "Balcon" },

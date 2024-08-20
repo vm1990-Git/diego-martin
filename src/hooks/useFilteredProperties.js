@@ -7,7 +7,7 @@ const useFilteredProperties = (initialFilters) => {
   const [filteredData, setFilteredData] = useState([]);
   const [paginatedProperties, setPaginatedProperties] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(8);
+  const [pageSize] = useState(20);
 
   const { properties, loading, error } = useProperties();
 
