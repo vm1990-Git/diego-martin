@@ -130,6 +130,7 @@ export const applyFilters = (properties, filters) => {
     "Comodidades_Vigilancia",
     "Comodidades_Terraza",
     "Comodidades_Apto_Emprendimiento",
+    "Comodidades_espacio_para_auto",
   ];
 
   comodidadesKeys.forEach((key) => {

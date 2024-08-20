@@ -9,6 +9,7 @@ export const fetchProperties = async () => {
     }
 
     const { data } = await response.json();
+    console.log(data); //borrar
     return data;
   } catch (error) {
     console.error("Failed to fetch properties:", error);

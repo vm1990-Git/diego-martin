@@ -124,6 +124,7 @@ function PropertyDetails() {
     { key: "Comodidades_Vigilancia", label: "Vigilancia" },
     { key: "Comodidades_Terraza", label: "Terraza" },
     { key: "Comodidades_Apto_Emprendimiento", label: "Apto Emprendimiento" },
+    { key: "Comodidades_espacio_para_auto", label: "Espacio para Auto" },
   ].filter((item) => propertyInfo[item.key]);
 
   const variosList = [
