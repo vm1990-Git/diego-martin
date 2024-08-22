@@ -175,13 +175,6 @@ function PropertyDetails() {
             </div>
           </div>
           <div className="px-4">
-            <p
-              className="text-start fw-semibold"
-              style={{ fontSize: "1.2rem" }}
-            >
-              {Titulo}
-            </p>
-
             <p>{descripcion}</p>
             <p> {Lote && <span>{`Lote ${Lote}`}</span>}</p>
             <hr className="custom-line" />
