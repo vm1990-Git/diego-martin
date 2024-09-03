@@ -40,7 +40,7 @@ const Navbar = () => {
       data-bs-backdrop="true"
       ref={navRef}
     >
-      <div className="container">
+      <div className="container-lg">
         <Logo />
         <button
           className="navbar-toggler"

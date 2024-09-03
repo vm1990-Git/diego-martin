@@ -12,6 +12,8 @@ const Footer = () => {
         chatMessage="Hola, dejanos tu consulta y en breve nos contactaremos."
         buttonStyle={{ bottom: 15, right: 15 }}
         chatboxStyle={{ bottom: 80, right: 5 }}
+        statusMessage=""
+        placeholder=""
       />
       <footer className="bg-dark text-white text-center py-2 mt-auto">
         <div>©2024 Mil990</div>

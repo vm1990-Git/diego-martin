@@ -2,7 +2,10 @@ import React from "react";
 
 const NavbarItem = ({ label, onClick }) => {
   return (
-    <li className="nav-item nav-item-custom" style={{ cursor: "pointer" }}>
+    <li
+      className="nav-item nav-item-custom text-center d-flex align-items-center"
+      style={{ cursor: "pointer", fontSize: "1.1rem" }}
+    >
       <div
         className="nav-link fw-semibold text-white"
         aria-current="page"
