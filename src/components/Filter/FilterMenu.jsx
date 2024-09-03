@@ -1,107 +1,58 @@
-import React from "react";
-import { TbArrowsUpDown } from "react-icons/tb";
-import { MdFilterList } from "react-icons/md";
+import React, { useCallback } from "react";
 
 const FilterMenu = ({ filters, setFilters }) => {
-  const handleFilterChange = (key, value) => {
-    setFilters((prev) => ({
-      ...prev,
-      [key]: value,
-    }));
-  };
+  const handleChange = useCallback(
+    (e) => {
+      const { name, value, type, checked } = e.target;
+      setFilters((prev) => ({
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      }));
+    },
+    [setFilters]
+  );
+
+  const getValueOrDefault = (value) => (value === null ? "" : value);
 
   return (
-    <div
-      className="position-fixed start-0 top-0 d-flex justify-content-center border-top border-bottom border-2 p-1 z-3 bg-white"
-      style={{ width: "100vw", marginTop: "55px" }}
-    >
-      <div className="dropdown d-flex flex-grow-1 justify-content-end align-items-center">
-        <button
-          className="btn rounded-0"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
+    <div className="d-flex flex-column justify-content-center bg-dark text-bg-dark p-3 rounded-2">
+      <div className="d-flex align-content-center justify-content-center">
+        <h4 className="border-bottom border-3 border-warning p-1">Busqueda</h4>
+      </div>
+      <div className="mb-3">
+        <label className="form-label">Tipo de Propiedad</label>
+        <select
+          className="form-select"
+          name="tipo_de_inmueble"
+          value={getValueOrDefault(filters.tipo_de_inmueble)}
+          onChange={handleChange}
         >
-          <div className="d-flex gap-1 align-items-center">
-            {filters.orden || "Orden"}
-            <TbArrowsUpDown size={15} />
-          </div>
-        </button>
-        <ul className="dropdown-menu">
-          <li>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={() => handleFilterChange("orden", "Menor Precio")}
-            >
-              Menor Precio
-            </a>
-          </li>
-          <li>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={() => handleFilterChange("orden", "Mayor Precio")}
-            >
-              Mayor Precio
-            </a>
-          </li>
-          <li>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={() => handleFilterChange("orden", "Recientes")}
-            >
-              Recientes
-            </a>
-          </li>
-        </ul>
+          <option value="">Todas</option>
+          <option value="Casa">Casa</option>
+          <option value="Departamentos">Departamentos</option>
+          <option value="PH">PH</option>
+          <option value="Lotes">Lotes</option>
+          <option value="Locales">Locales</option>
+          <option value="Galpones">Galpones</option>
+          <option value="Cocheras">Cocheras</option>
+          <option value="Duplex">Duplex</option>
+          <option value="Oficinas">Oficinas</option>
+          <option value="Otros">Otros</option>
+        </select>
       </div>
 
-      <div className="dropdown rounded-0 border-start border-end border-1 rounded-start-0 d-flex ">
-        <button
-          className="btn rounded-0"
-          type="button"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
+      <div className="mb-3">
+        <label className="form-label">Tipo de Operación</label>
+        <select
+          className="form-select"
+          name="Tipo_de_operacion"
+          value={getValueOrDefault(filters.tipo_de_inmueble)}
+          onChange={handleChange}
         >
-          {filters.Tipo_de_operacion || "Operación"}
-        </button>
-        <ul className="dropdown-menu">
-          <li>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={() =>
-                handleFilterChange("Tipo_de_operacion", "Alquiler")
-              }
-            >
-              Alquiler
-            </a>
-          </li>
-          <li>
-            <a
-              className="dropdown-item"
-              href="#"
-              onClick={() => handleFilterChange("Tipo_de_operacion", "Venta")}
-            >
-              Venta
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div className="d-flex flex-grow-1 justify-content-start align-items-center">
-        <button
-          className="btn d-flex align-items-center gap-1 rounded-0"
-          type="button"
-          data-bs-toggle="offcanvas"
-          data-bs-target="#staticBackdrop"
-          aria-controls="staticBackdrop"
-        >
-          <span>Filtros</span>
-          <MdFilterList size={18} />
-        </button>
+          <option value="">Seleccione</option>
+          <option value="Venta">Venta</option>
+          <option value="Alquiler">Alquiler</option>
+        </select>
       </div>
     </div>
   );

@@ -21,8 +21,9 @@ const Services = () => {
   ];
 
   return (
-    <section id="services">
-      <div className="d-flex flex-column py-4">
+    <>
+      <section id="services" />
+      <div className="d-flex flex-column py-5">
         <h2 className="text-center h2 fw-bold pb-4">Nuestros Servicios</h2>
         <div className="container">
           <div className="d-flex justify-content-center flex-wrap">
@@ -50,7 +51,7 @@ const Services = () => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

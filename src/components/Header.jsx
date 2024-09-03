@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <div
       id="carouselExampleCaptions"
-      className="carousel slide"
+      className="carousel slide mt-5"
       data-bs-ride="carousel"
     >
       <div className="carousel-indicators">

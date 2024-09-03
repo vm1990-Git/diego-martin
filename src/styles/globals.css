@@ -185,3 +185,7 @@
     height: 300px;
   }
 }
+
+section {
+  transform: translateY(-5rem);
+}

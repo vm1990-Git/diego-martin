@@ -13,7 +13,8 @@ const AboutUs = () => {
   };
 
   return (
-    <section id="about-us">
+    <>
+      <section id="about-us" />
       <div
         className="flex-column align-items-center py-4 text-white"
         style={{
@@ -75,7 +76,7 @@ const AboutUs = () => {
           <div className="row mt-3"></div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

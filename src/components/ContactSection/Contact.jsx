@@ -5,7 +5,8 @@ import ContactMap from "./ContactMap";
 
 const Contact = () => {
   return (
-    <section id="contact" className="section-offset">
+    <>
+      <section id="contact" className="section-offset" />
       <div className="d-flex flex-column py-4 bg-dark text-white">
         <h2 className="text-center h2 fw-semibold pb-4">Contacto</h2>
         <div className="container-xxl">
@@ -22,7 +23,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

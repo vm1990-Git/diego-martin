@@ -55,13 +55,18 @@ const Index = () => {
   const page = useFilteredProperties.page;
 
   return (
-    <div className="d-flex flex-column mt-5 pt-5">
-      <Filter
-        filters={filters}
-        setFilters={setFilters}
-        handleReset={handleReset}
-      />
-      <div className="container card-container">
+    <div className="d-flex flex-column justify-items-center justify-content-center align-content-center flex-lg-row mt-5 pt-5">
+      <div
+        className="container-fluid justify-content-center ps-4 pt-3"
+        style={{ maxWidth: "400px" }}
+      >
+        <Filter
+          filters={filters}
+          setFilters={setFilters}
+          handleReset={handleReset}
+        />
+      </div>
+      <div className="container-fluid card-container">
         <LoadingError loading={loading} error={error} page={page} />
         {paginatedProperties.length > 0 ? (
           paginatedProperties.map((property) => {
@@ -89,7 +94,7 @@ const Index = () => {
             <span className="fw-semibold">No hay propiedades para mostrar</span>
           </div>
         ) : (
-          <div className="loading-container" style={{ height: "300px" }}>
+          <div className="loading-container w-50" style={{ height: "300px" }}>
             <div className="spinner-border" role="status">
               <span className="visually-hidden">Loading...</span>
             </div>
