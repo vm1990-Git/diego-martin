@@ -46,7 +46,7 @@ const FilterMenu = ({ filters, setFilters }) => {
         <select
           className="form-select"
           name="Tipo_de_operacion"
-          value={getValueOrDefault(filters.tipo_de_inmueble)}
+          value={getValueOrDefault(filters.Tipo_de_operacion)}
           onChange={handleChange}
         >
           <option value="">Seleccione</option>

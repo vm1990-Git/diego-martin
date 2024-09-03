@@ -87,10 +87,7 @@ const Index = () => {
             );
           })
         ) : !loading ? (
-          <div
-            className="d-flex justify-content-center align-items-center"
-            style={{ height: "50vh", width: "100vw" }}
-          >
+          <div className="d-flex justify-content-center align-items-center">
             <span className="fw-semibold">No hay propiedades para mostrar</span>
           </div>
         ) : (
