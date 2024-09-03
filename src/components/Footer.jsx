@@ -8,7 +8,7 @@ const Footer = () => {
       <FloatingWhatsApp
         phoneNumber="+54 9 11 3074-0564"
         accountName="Diego Martin Propiedades"
-        avatar="https://media-eze1-1.cdn.whatsapp.net/v/t61.24694-24/65012831_648523475667522_7314071632820043776_n.jpg?ccb=11-4&oh=01_Q5AaIIi0K8VBbUKownPO0UBiDhky6oOSpq68ux4J-4J8-swW&oe=66D060AE&_nc_sid=5e03e0&_nc_cat=106"
+        avatar="/assets/DMP2.jpg"
         chatMessage="Hola, dejanos tu consulta y en breve nos contactaremos."
         buttonStyle={{ bottom: 15, right: 15 }}
         chatboxStyle={{ bottom: 80, right: 5 }}

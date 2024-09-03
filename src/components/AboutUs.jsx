@@ -64,10 +64,10 @@ const AboutUs = () => {
             </div>
             <div className="col-xl-4 d-none d-xl-flex">
               <Image
-                src="/assets/DMP.png"
+                src="/assets/DMP2.jpg"
                 alt="Imagen del local"
                 className="img-fluid"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "fill" }}
                 width={500}
                 height={500}
               />
