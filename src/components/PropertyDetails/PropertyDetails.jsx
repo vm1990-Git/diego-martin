@@ -42,6 +42,7 @@ function PropertyDetails() {
     Localidades = "No disponible",
     m2_cubiertos = 0,
     m2_descubiertos = 0,
+    metros_totales2 = 0,
     Lote = null,
   } = propertyInfo || {};
 
@@ -225,7 +226,7 @@ function PropertyDetails() {
 
               <Icon
                 label={"Totales"}
-                value={`${m2_cubiertos + m2_descubiertos}m² `}
+                value={`${metros_totales2 !== null ? metros_totales2 : 0}m²`}
                 IconComponent={FaThLarge}
               />
             </div>
