@@ -4,7 +4,6 @@ import React from "react";
 import Card from "./Card";
 import useProperties from "../hooks/useProperties";
 
-// Función para obtener propiedades aleatorias
 const getRandomProperties = (properties, num) => {
   if (properties.length <= num) return properties;
 
@@ -14,14 +13,12 @@ const getRandomProperties = (properties, num) => {
 };
 
 const TopProperties = () => {
-  const { properties } = useProperties();
+  const { properties } = useProperties(1, 100);
 
-  // Filtrar propiedades que tienen "Varios_Destacado: true"
   const highlightedProperties = properties.filter(
     (property) => property.attributes.Varios_Destacado === true
   );
 
-  // Obtener un número específico de propiedades aleatorias
   const randomProperties = getRandomProperties(highlightedProperties, 4);
 
   return (

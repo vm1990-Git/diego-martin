@@ -1,15 +1,15 @@
-export const fetchProperties = async () => {
+export const fetchProperties = async (page = 1, pageSize = 10) => {
   try {
     const response = await fetch(
-      "https://diegogmartin.onrender.com/api/propiedades?populate=*&pagination[pageSize]=500"
+      `https://diegogmartin.onrender.com/api/propiedades?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
     );
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status} - ${response.statusText}`);
     }
 
-    const { data } = await response.json();
-    return data;
+    const { data, meta } = await response.json();
+    return { data, meta };
   } catch (error) {
     console.error("Failed to fetch properties:", error.message);
     throw error;

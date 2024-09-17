@@ -44,15 +44,8 @@ const Index = () => {
     currency: "",
   };
 
-  const {
-    filters,
-    setFilters,
-    paginatedProperties,
-    loading,
-    error,
-    handleReset,
-  } = useFilteredProperties(initialFilters);
-  const page = useFilteredProperties.page;
+  const { filters, setFilters, filteredData, loading, error, handleReset } =
+    useFilteredProperties(initialFilters);
 
   return (
     <div className="d-flex flex-column justify-items-center justify-content-center align-content-center flex-lg-row mt-5 pt-5">
@@ -67,9 +60,9 @@ const Index = () => {
         />
       </div>
       <div className="container-fluid card-container">
-        <LoadingError loading={loading} error={error} page={page} />
-        {paginatedProperties.length > 0 ? (
-          paginatedProperties.map((property) => {
+        <LoadingError loading={loading} error={error} />
+        {filteredData.length > 0 ? (
+          filteredData.map((property, key) => {
             const imageUrl =
               property.attributes.Imagen?.data?.[0]?.attributes?.url ||
               "/assets/NoImage.png";
@@ -98,14 +91,14 @@ const Index = () => {
             <span className="my-3 fw-semibold">Cargando Propiedades</span>
           </div>
         )}
-        {loading && page > 1 && (
-          <div className="text-center">
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-          </div>
-        )}
       </div>
+      {loading && filteredData.length > 0 && (
+        <div className="text-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

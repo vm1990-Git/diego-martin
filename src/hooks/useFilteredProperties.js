@@ -5,30 +5,40 @@ import useProperties from "./useProperties";
 const useFilteredProperties = (initialFilters) => {
   const [filters, setFilters] = useState(initialFilters);
   const [filteredData, setFilteredData] = useState([]);
-  const [paginatedProperties, setPaginatedProperties] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(20);
+  const [pageSize] = useState(10);
+  const [hasMore, setHasMore] = useState(true);
 
-  const { properties, loading, error } = useProperties();
+  const { properties, loading, error, meta } = useProperties(page, pageSize);
 
   useEffect(() => {
     setFilteredData(applyFilters(properties, filters));
   }, [filters, properties]);
 
   useEffect(() => {
-    setPaginatedProperties(filteredData.slice(0, page * pageSize));
-  }, [filteredData, page, pageSize, filters]);
+    setPage(1);
+    setHasMore(true);
+  }, [filters]);
+
+  useEffect(() => {
+    if (
+      meta?.pagination.total &&
+      filteredData.length >= meta.pagination.total
+    ) {
+      setHasMore(false);
+    }
+  }, [filteredData, meta]);
 
   const handleScroll = useCallback(() => {
     if (
       window.innerHeight + document.documentElement.scrollTop + 1 >=
       document.documentElement.scrollHeight
     ) {
-      if (!loading && paginatedProperties.length < properties.length) {
+      if (!loading && hasMore) {
         setPage((prevPage) => prevPage + 1);
       }
     }
-  }, [loading, paginatedProperties.length, properties.length]);
+  }, [loading, hasMore]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -38,7 +48,7 @@ const useFilteredProperties = (initialFilters) => {
   return {
     filters,
     setFilters,
-    paginatedProperties,
+    filteredData,
     loading,
     error,
     handleReset: () => setFilters(initialFilters),
