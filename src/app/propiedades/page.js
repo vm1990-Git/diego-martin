@@ -59,46 +59,52 @@ const Index = () => {
           handleReset={handleReset}
         />
       </div>
-      <div className="container-fluid card-container">
-        <LoadingError loading={loading} error={error} />
-        {filteredData.length > 0 ? (
-          filteredData.map((property, key) => {
-            const imageUrl =
-              property.attributes.Imagen?.data?.[0]?.attributes?.url ||
-              "/assets/NoImage.png";
+      <div className="container">
+        <div className="container-fluid card-container">
+          <LoadingError loading={loading} error={error} />
+          {filteredData.length > 0 ? (
+            filteredData.map((property, key) => {
+              const imageUrl =
+                property.attributes.Imagen?.data?.[0]?.attributes?.url ||
+                "/assets/NoImage.png";
 
-            return (
-              <Card
-                key={property.id}
-                id={property.id}
-                image={imageUrl}
-                direc={property.attributes.Direccion || "Dirección"}
-                title={property.attributes.Titulo || "Descripción"}
-                priceUsd={property.attributes.valor_dolares || "Consultar"}
-                pricePesos={property.attributes.valor_pesos || "Consultar"}
-              />
-            );
-          })
-        ) : !loading ? (
-          <div className="d-flex justify-content-center align-items-center">
-            <span className="fw-semibold">No hay propiedades para mostrar</span>
-          </div>
-        ) : (
-          <div className="loading-container w-50" style={{ height: "300px" }}>
-            <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
+              return (
+                <Card
+                  key={property.id}
+                  id={property.id}
+                  image={imageUrl}
+                  direc={property.attributes.Direccion || "Dirección"}
+                  title={property.attributes.Titulo || "Descripción"}
+                  priceUsd={property.attributes.valor_dolares || "Consultar"}
+                  pricePesos={property.attributes.valor_pesos || "Consultar"}
+                />
+              );
+            })
+          ) : !loading ? (
+            <div className="d-flex justify-content-center align-items-center">
+              <span className="fw-semibold">
+                No hay propiedades para mostrar
+              </span>
             </div>
-            <span className="my-3 fw-semibold">Cargando Propiedades</span>
-          </div>
-        )}
-      </div>
-      {loading && filteredData.length > 0 && (
-        <div className="text-center">
-          <div className="spinner-border" role="status">
-            <span className="visually-hidden">Loading...</span>
-          </div>
+          ) : (
+            <div className="loading-container w-50" style={{ height: "300px" }}>
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+              <span className="my-3 fw-semibold">Cargando Propiedades</span>
+            </div>
+          )}
         </div>
-      )}
+        <div className="p-4">
+          {loading && filteredData.length > 0 && (
+            <div className="text-center">
+              <div className="spinner-border" role="status">
+                <span className="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
   );
 };

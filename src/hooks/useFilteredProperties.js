@@ -6,28 +6,27 @@ const useFilteredProperties = (initialFilters) => {
   const [filters, setFilters] = useState(initialFilters);
   const [filteredData, setFilteredData] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(10);
+  const [pageSize] = useState(20);
   const [hasMore, setHasMore] = useState(true);
 
   const { properties, loading, error, meta } = useProperties(page, pageSize);
 
   useEffect(() => {
-    setFilteredData(applyFilters(properties, filters));
+    const newFilteredData = applyFilters(properties, filters);
+    setFilteredData(newFilteredData);
   }, [filters, properties]);
 
   useEffect(() => {
-    setPage(1);
-    setHasMore(true);
-  }, [filters]);
-
-  useEffect(() => {
-    if (
-      meta?.pagination.total &&
-      filteredData.length >= meta.pagination.total
-    ) {
+    if (page == meta?.pagination.pageCount) {
       setHasMore(false);
     }
-  }, [filteredData, meta]);
+  }, [page, meta?.pagination.pageCount]);
+
+  useEffect(() => {
+    if (filteredData.length != 0 && filteredData.length < 20 && hasMore) {
+      setPage((prevPage) => prevPage + 1);
+    }
+  }, [filteredData, hasMore]);
 
   const handleScroll = useCallback(() => {
     if (
