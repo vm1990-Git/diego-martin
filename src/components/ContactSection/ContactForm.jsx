@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
 import { usePathname } from "next/navigation";
 
-const ContactForm = () => {
+const ContactForm = ({ propertyInfo }) => {
   const form = useRef(null);
   const [formCompleted, setFormCompleted] = useState(false);
 
@@ -95,7 +95,11 @@ const ContactForm = () => {
           type="url"
           placeholder=""
           name="property"
-          value={pathname == "/" ? "ninguna" : url}
+          value={
+            pathname == "/"
+              ? "Enviado desde Pagina Principal (Sin propiedad)"
+              : `${propertyInfo?.Direccion} - ${propertyInfo?.Titulo} - ${url}`
+          }
           readOnly
         />
         <textarea

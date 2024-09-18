@@ -14,9 +14,8 @@ import { FaBath, FaThLarge, FaObjectGroup, FaHome } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import { FaLocationDot } from "react-icons/fa6";
 
-function PropertyDetails() {
+function PropertyDetails({ propertyInfo, setPropertyInfo }) {
   const [imageIndex, setImageIndex] = useState(0);
-  const [propertyInfo, setPropertyInfo] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const pathname = usePathname();

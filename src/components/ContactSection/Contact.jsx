@@ -3,7 +3,7 @@ import ContactInfo from "./ContactInfo";
 import ContactForm from "./ContactForm";
 import ContactMap from "./ContactMap";
 
-const Contact = () => {
+const Contact = ({ propertyInfo }) => {
   return (
     <>
       <section id="contact" className="section-offset" />
@@ -18,7 +18,7 @@ const Contact = () => {
               <ContactMap />
             </div>
             <div className="col-md-6 col-lg-4 mb-4 order-3 order-md-2 order-lg-3">
-              <ContactForm />
+              <ContactForm propertyInfo={propertyInfo} />
             </div>
           </div>
         </div>
