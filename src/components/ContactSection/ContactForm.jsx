@@ -3,10 +3,14 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import toast, { Toaster } from "react-hot-toast";
+import { usePathname } from "next/navigation";
 
 const ContactForm = () => {
   const form = useRef(null);
   const [formCompleted, setFormCompleted] = useState(false);
+
+  const pathname = usePathname();
+  const url = `https://diegogmartin.com.ar/${pathname}`;
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -85,6 +89,14 @@ const ContactForm = () => {
           type="email"
           placeholder="Email"
           name="user_mail"
+        />
+        <input
+          className="form-control visually-hidden"
+          type="url"
+          placeholder=""
+          name="property"
+          value={pathname == "/" ? "ninguna" : url}
+          readOnly
         />
         <textarea
           className="form-control"

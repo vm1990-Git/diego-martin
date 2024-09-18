@@ -17,9 +17,35 @@ const useProperties = (page = 1, pageSize, filter) => {
         const { data, meta } = await fetchProperties(page, pageSize, filter, {
           signal,
         });
+
+        // Ordenar solo las imágenes de las propiedades con id > 55
+        const sortedProperties = data.map((property) => {
+          // Si el id es mayor a 55, ordenar las imágenes
+          if (property.id > 55) {
+            const sortedImages = property.attributes.Imagen?.data?.sort(
+              (a, b) => a.attributes.name.localeCompare(b.attributes.name)
+            );
+
+            // Retornar la propiedad con las imágenes ordenadas
+            return {
+              ...property,
+              attributes: {
+                ...property.attributes,
+                Imagen: {
+                  ...property.attributes.Imagen,
+                  data: sortedImages,
+                },
+              },
+            };
+          }
+
+          // Retornar la propiedad sin cambios si id <= 55
+          return property;
+        });
+
         setProperties((prevProperties) => {
           const existingIds = new Set(prevProperties.map((prop) => prop.id));
-          const newProperties = data.filter(
+          const newProperties = sortedProperties.filter(
             (prop) => !existingIds.has(prop.id)
           );
           return [...prevProperties, ...newProperties];

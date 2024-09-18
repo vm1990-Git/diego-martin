@@ -13,7 +13,7 @@ const getRandomProperties = (properties, num) => {
 };
 
 const TopProperties = () => {
-  const { properties } = useProperties(1, 4, { Varios_Destacado: true });
+  const { properties } = useProperties(1, 100, { Varios_Destacado: true });
 
   const highlightedProperties = properties.filter(
     (property) => property.attributes.Varios_Destacado === true

@@ -9,7 +9,6 @@ export const fetchProperties = async (
       .join("&");
 
     const url = `https://diegogmartin.onrender.com/api/propiedades?${filterQuery}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
-    console.log(url);
     const response = await fetch(url);
 
     if (!response.ok) {
@@ -17,6 +16,7 @@ export const fetchProperties = async (
     }
 
     const { data, meta } = await response.json();
+
     return { data, meta };
   } catch (error) {
     console.error("Failed to fetch properties:", error.message);
