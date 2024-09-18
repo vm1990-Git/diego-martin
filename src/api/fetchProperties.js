@@ -1,8 +1,16 @@
-export const fetchProperties = async (page = 1, pageSize = 10) => {
+export const fetchProperties = async (
+  page = 1,
+  pageSize = 10,
+  filters = {}
+) => {
   try {
-    const response = await fetch(
-      `https://diegogmartin.onrender.com/api/propiedades?populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
-    );
+    const filterQuery = Object.keys(filters)
+      .map((key) => `filters[${key}][$eq]=${encodeURIComponent(filters[key])}`)
+      .join("&");
+
+    const url = `https://diegogmartin.onrender.com/api/propiedades?${filterQuery}&populate=*&pagination[page]=${page}&pagination[pageSize]=${pageSize}`;
+    console.log(url);
+    const response = await fetch(url);
 
     if (!response.ok) {
       throw new Error(`Error: ${response.status} - ${response.statusText}`);

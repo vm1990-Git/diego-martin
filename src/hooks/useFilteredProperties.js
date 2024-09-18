@@ -6,10 +6,14 @@ const useFilteredProperties = (initialFilters) => {
   const [filters, setFilters] = useState(initialFilters);
   const [filteredData, setFilteredData] = useState([]);
   const [page, setPage] = useState(1);
-  const [pageSize] = useState(20);
+  const [pageSize] = useState(12);
   const [hasMore, setHasMore] = useState(true);
 
-  const { properties, loading, error, meta } = useProperties(page, pageSize);
+  const { properties, loading, error, meta } = useProperties(
+    page,
+    pageSize,
+    {}
+  );
 
   useEffect(() => {
     const newFilteredData = applyFilters(properties, filters);

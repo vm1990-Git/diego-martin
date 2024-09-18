@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { fetchProperties } from "../api/fetchProperties";
 
-const useProperties = (page = 1, pageSize = 10) => {
+const useProperties = (page = 1, pageSize, filter) => {
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,7 +14,7 @@ const useProperties = (page = 1, pageSize = 10) => {
     const loadProperties = async () => {
       try {
         setLoading(true);
-        const { data, meta } = await fetchProperties(page, pageSize, {
+        const { data, meta } = await fetchProperties(page, pageSize, filter, {
           signal,
         });
         setProperties((prevProperties) => {
