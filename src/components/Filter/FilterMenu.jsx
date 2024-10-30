@@ -1,5 +1,6 @@
 import React, { useCallback } from "react";
 
+// Menu Filtro
 const FilterMenu = ({ filters, setFilters }) => {
   const handleChange = useCallback(
     (e) => {
