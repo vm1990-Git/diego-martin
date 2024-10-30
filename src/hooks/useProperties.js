@@ -14,7 +14,7 @@ const useProperties = (page = 1, pageSize, filter) => {
     const loadProperties = async () => {
       try {
         setLoading(true);
-        const { data, meta } = await fetchProperties(page, pageSize, filter, {
+        const { data, meta } = await fetchProperties(page, 70, filter, {
           signal,
         });
 

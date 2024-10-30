@@ -21,10 +21,16 @@ function PropertyDetails({ propertyInfo, setPropertyInfo }) {
   const pathname = usePathname();
   const id = pathname.split("/")[2];
 
-  const images = propertyInfo?.Imagen?.data?.map(
-    (img) => img.attributes.url
-  ) || ["/assets/NoImage.png"];
+  const imagesData = propertyInfo?.Imagen?.data?.map((img) => img.attributes);
 
+  imagesData &&
+    imagesData.sort((a, b) => {
+      const numA = parseInt(a.name.split("_")[1]) || 0; // Extraer el número, o usar 0 si no hay número
+      const numB = parseInt(b.name.split("_")[1]) || 0;
+      return numA - numB;
+    });
+
+  const images = imagesData?.map((img) => img.url) || ["/assets/NoImage.png"];
   const {
     Titulo = "No disponible",
     Direccion = "No disponible",
