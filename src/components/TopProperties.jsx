@@ -27,10 +27,14 @@ const TopProperties = () => {
       <div className="container-fluid card-container">
         {randomProperties.length > 0 ? (
           randomProperties.map((property) => {
+            const images = property.attributes.Imagen?.data || [];
+            const imageWithName = images.find((img) =>
+              img.attributes.name.toLowerCase().includes("_1")
+            );
             const imageUrl =
-              property.attributes.Imagen?.data?.[0]?.attributes?.url ||
+              imageWithName?.attributes.url ||
+              images[0]?.attributes.url ||
               "/assets/NoImage.png";
-
             return (
               <Card
                 key={property.id}
